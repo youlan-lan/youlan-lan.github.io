@@ -3,8 +3,8 @@ title: 【手把手傻瓜式系列1】使用Hexo搭建博客（基础版）
 index_img: https://gitee.com/youlan_lan/md_image/raw/master/20210607012255.png
 categories:
 - 博客搭建
-- 小白教程
 tags:
+- 小白教程
 - 博客搭建
 - node
 - git

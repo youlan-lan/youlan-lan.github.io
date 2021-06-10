@@ -269,6 +269,7 @@ banner_img: https://static.zkqiang.cn/example.jpg
 
   这个是我后来在fluid的博客上看到的...应该早点看到，泪目
 
+  * **元气桌面 https://desk.duba.com/**
   * https://wallpaperhub.app/
   * https://wallhaven.cc/
   * https://unsplash.com/

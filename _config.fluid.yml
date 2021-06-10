@@ -186,7 +186,7 @@ color:
 # 主题字体配置
 # Font
 font:
-  font_size: 19px
+  font_size: 17px
   font_family:
   code_font_size: 85%
 
@@ -307,8 +307,8 @@ navbar:
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
 # Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files
@@ -371,10 +371,12 @@ footer:
   # 页脚第一行文字的 HTML，建议保留 Fluid 的链接，用于向更多人推广本主题
   # HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
   content: '
-    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-    <i> | </i>
-    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
-    <div>优岚的博客 | 记录成长的过程</div>
+    <div style="color:#0983CE"> 优岚的博客 | 记录成长的过程</div>
+    <div style="background-image: linear-gradient(to right, red, orange, yellow, green, yellow, orange, red, orange, yellow, green, yellow, orange, red);-webkit-background-clip: text;animation: move 5s infinite;color: transparent;">
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script src="/js/duration.js"></script>
+    </div>
   '
 
   # 展示网站的 PV、UV 统计数
@@ -628,7 +630,7 @@ post:
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
-    type: disqus
+    type: utterances
 
 
 #---------------------------
@@ -644,7 +646,7 @@ post:
 # Based on GitHub Issues
 # See: https://utteranc.es
 utterances:
-  repo:
+  repo: youlan-lan.github.io
   issue_term: pathname
   label: utterances
   theme: github-light
@@ -888,6 +890,12 @@ links:
   # 友链的成员项
   # Member item of page
   items:
+    - {
+      title: "kakkk",
+      intro: "捕捉一只大佬！",
+      link: "https://blog.kakkk.net/",
+      avatar: "https://gitee.com/youlan_lan/md_image/raw/master/20210610181759.jpeg"
+    }
     # - {
     #   title: "Fluid Blog",
     #   intro: "主题博客",
