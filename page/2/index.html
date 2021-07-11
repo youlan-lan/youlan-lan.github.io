@@ -18,7 +18,7 @@
   <meta name="author" content="优岚">
   <meta name="keywords" content="">
   
-  <title>归档 - 优岚的博客</title>
+  <title>优岚的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -48,7 +48,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -154,18 +154,22 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://gitee.com/youlan_lan/md_image/raw/master/20210606215043.jpg') no-repeat center center;
+         style="background: url('https://gitee.com/youlan_lan/md_image/raw/master/20210606214718.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="优岚的博客主页">
               
             </span>
 
             
           </div>
 
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
           
         </div>
       </div>
@@ -176,42 +180,99 @@
     
       <div class="container nopadding-x-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 11 篇文章</p>
-  <hr>
-  
-  
+
+  <div class="row mx-auto index-card">
     
-      
-      <p class="h5">2021</p>
     
-    <a href="/2021/06/07/Hexo%20%E4%B8%BB%E9%A2%98%E4%B9%8B%20Fluid/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">【手把手系列2】 Fluid 主题配置教程</span>
-      <time style="float: right;">06-07</time>
-    </a>
-  
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/06/06/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" target="_self">
+          <img src="https://ns-strategy.cdn.bcebos.com/ns-strategy/upload/fc_big_pic/part-00669-2722.jpg" srcset="/img/loading.gif" lazyload alt="经典排序算法">
+        </a>
+      </div>
     
-    <a href="/2021/06/07/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">【手把手系列1】使用Hexo搭建博客（基础版）</span>
-      <time style="float: right;">06-07</time>
-    </a>
-  
-    
-    <a href="/2021/06/06/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">经典排序算法</span>
-      <time style="float: right;">06-06</time>
-    </a>
-  
-</div>
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/06/06/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" target="_self">
+          经典排序算法
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/06/06/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" target="_self">
+          
+          
+            
+          
+          经典排序算法0. 放在前面
+
+==1. 冒泡排序（重点）==比较相邻的元素，前面&gt;后面，则调换位置
+所有元素都进行这一操作
+需要用到两个for循环
 
 
+时间复杂度：
+
+最好情况：O(n)
+平均情况：O(n^2)
+最坏情况：O(n^2)
+
+
+稳定性：稳定
+
+额外的空间：O(1)
+原地排序，不需要额外空间
+
+
+1. 一般版12345678910111213function bubbleSort1
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-06 18:52" pubdate>
+              2021-06-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/js/">js</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
 
 
 
