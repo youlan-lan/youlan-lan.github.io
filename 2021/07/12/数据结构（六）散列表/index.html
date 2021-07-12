@@ -1,0 +1,627 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/youlan_lan/md_image/raw/master/20210606182149.png">
+  <link rel="icon" href="https://gitee.com/youlan_lan/md_image/raw/master/20210606182149.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#447EA5">
+  <meta name="description" content="">
+  <meta name="author" content="优岚">
+  <meta name="keywords" content="">
+  
+  <title>数据结构（六）散列表 - 优岚的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Youlan's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="数据结构（六）散列表">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      优岚
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-12 16:09" pubdate>
+        2021年7月12日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据结构（六）散列表</h1>
+            
+              <p class="note note-info">
+                
+                  文章内容进行过修改，最后更新于：2021年7月12日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>HashTable、HashMap，是Dictionary类的一种散列表实现方式</p>
+<p>散列算法：尽可能快地在数据结构中找到一个值</p>
+<p>散列函数：给定一个键值，然后返回值在表中的地址</p>
+<blockquote>
+<p>应用：</p>
+<p>关系型数据库：创建新的表时，同时创建一个索引来更快地查询到记录的key</p>
+</blockquote>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712113143.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-具体操作"><a href="#2-具体操作" class="headerlink" title="2. 具体操作"></a>2. 具体操作</h3><p><strong>创建</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HaspTable</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">toStrFn = defaultToString</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.toStrFn = toStrFn;<br>        <span class="hljs-built_in">this</span>.table = &#123;&#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>创建散列函数</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">loseloseHashCode</span>(<span class="hljs-params">key</span>)</span> &#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">typeof</span> key === <span class="hljs-string">&#x27;number&#x27;</span>) &#123;<br>        <span class="hljs-keyword">return</span> key;<br>    &#125;<br>    <span class="hljs-keyword">const</span> tableKey = <span class="hljs-built_in">this</span>.toStrFn(key);<br>    <span class="hljs-keyword">let</span> hash = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; tableKey.length; i++) &#123;<br>        has += tableKey.charCodeAt(i);  <span class="hljs-comment">//转换为ASII码值</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> hash % <span class="hljs-number">37</span>;  <span class="hljs-comment">//规避操作数超过数值变量最大表示范围的风险</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-title">hashCode</span>(<span class="hljs-params">key</span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.loseloeseHashCode(key);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>方法</strong></p>
+<ul>
+<li><p>put(key,value)：向散列表增加一个新的项（也能更新散列表）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">put</span>(<span class="hljs-params">key, value</span>)</span> &#123;<br>    <span class="hljs-keyword">if</span>(key != <span class="hljs-literal">null</span> &amp;&amp; value ! <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">const</span> position = <span class="hljs-built_in">this</span>.hashCode(key);<br>        <span class="hljs-built_in">this</span>.table[position] = <span class="hljs-keyword">new</span> ValuePair(key, value);<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>remove(key)：根据键值从散列表中移除值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">remove</span>(<span class="hljs-params">key</span>)</span> &#123;<br>    <span class="hljs-keyword">const</span> hash = <span class="hljs-built_in">this</span>.hashCode(key);<br>    <span class="hljs-keyword">const</span> valuePair = <span class="hljs-built_in">this</span>.table[hash];<br>    <span class="hljs-keyword">if</span>(valuePair != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">delete</span> <span class="hljs-built_in">this</span>.table[hash];<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>get(key)：返回根据键值检索到的特定的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params">key</span>)</span> &#123;<br>    <span class="hljs-keyword">const</span> valuePair = <span class="hljs-built_in">this</span>.table[<span class="hljs-built_in">this</span>.hashCode(key)];<br>    <span class="hljs-keyword">return</span> valuePair == <span class="hljs-literal">null</span> ? <span class="hljs-literal">undefined</span> : valuePair.value;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-使用"><a href="#3-使用" class="headerlink" title="3. 使用"></a>3. 使用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> hash = <span class="hljs-keyword">new</span> HashTable();<br><br>hash.put(<span class="hljs-string">&#x27;Gandalf&#x27;</span>, <span class="hljs-string">&#x27;gandalf@email.com&#x27;</span>);<br>hash.put(<span class="hljs-string">&#x27;John&#x27;</span>, <span class="hljs-string">&#x27;johnsnow@email.com&#x27;</span>);<br>hash.put(<span class="hljs-string">&#x27;Tyrion&#x27;</span>, <span class="hljs-string">&#x27;tyrion@email.com&#x27;</span>);<br><br><span class="hljs-built_in">console</span>.log(hash.hashCode(<span class="hljs-string">&#x27;Gandalf&#x27;</span>) + <span class="hljs-string">&#x27; - Gandalf&#x27;</span>); <span class="hljs-comment">// 19 - Gandalf</span><br><span class="hljs-built_in">console</span>.log(hash.hashCode(<span class="hljs-string">&#x27;John&#x27;</span>) + <span class="hljs-string">&#x27; - John&#x27;</span>);  <span class="hljs-comment">// 29 - John</span><br><span class="hljs-built_in">console</span>.log(hash.hashCode(<span class="hljs-string">&#x27;Tyrion&#x27;</span>) + <span class="hljs-string">&#x27; - Tyrion&#x27;</span>);  <span class="hljs-comment">// 16 - Tyrion</span><br><span class="hljs-built_in">console</span>.log(hash.get(<span class="hljs-string">&#x27;Gandalf&#x27;</span>)); <span class="hljs-comment">// gandalf@email.com</span><br><span class="hljs-built_in">console</span>.log(hash.get(<span class="hljs-string">&#x27;Loiane&#x27;</span>)); <span class="hljs-comment">// undefined</span><br><br>hash.remove(<span class="hljs-string">&#x27;Gandalf&#x27;</span>);<br><span class="hljs-built_in">console</span>.log(hash.get(<span class="hljs-string">&#x27;Gandalf&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p><strong>散列表和散列集合</strong></p>
+<p>类似</p>
+<p>散列集合由一个集合构成，插入、移除或获取元素时，使用的是hashCode函数</p>
+<blockquote>
+<p>不同之处： 不需要添加键值对，只插入值而没有键</p>
+</blockquote>
+<h3 id="4-处理散列表的冲突"><a href="#4-处理散列表的冲突" class="headerlink" title="4. 处理散列表的冲突"></a>4. 处理散列表的冲突</h3><p>当键有相同的散列值时，不同的值在散列表中对应着相同的位置，后面添加的值会覆盖前面的，称为冲突。</p>
+<p><strong>处理冲突的几种方法： 分离链接、线性探查和双散列法</strong></p>
+<h4 id="1-分离链接"><a href="#1-分离链接" class="headerlink" title="1. 分离链接"></a>1. 分离链接</h4><p>解决冲突的最简单的方法</p>
+<p>分离链接法包括为散列表的每一个位置创建一个链表并将元素存储在里面</p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712142136.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>创建</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HashTableSeparateChaining</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">toStrFn = defaultString</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.toStrFn = toStrFn;<span class="hljs-number">2</span><br>        <span class="hljs-built_in">this</span>.table = &#123;&#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>方法</strong></p>
+<ul>
+<li><p>put(key,value)：向散列表增加一个新的项（也能更新散列表）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">put</span>(<span class="hljs-params">key, value</span>)</span> &#123;<br>    <span class="hljs-keyword">if</span>(key != <span class="hljs-literal">null</span> &amp;&amp; value != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">const</span> position = <span class="hljs-built_in">this</span>.hashCode(key);<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.table[position] == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-built_in">this</span>.table[position] = <span class="hljs-keyword">new</span> LinkedList();<br>        &#125;<br>        <span class="hljs-built_in">this</span>.table[position].push(<span class="hljs-keyword">new</span> ValuePair(key, value));<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>remove(key)：根据键值从散列表中移除值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">remove</span>(<span class="hljs-params">key</span>)</span> &#123;<br>    <span class="hljs-keyword">const</span> position = <span class="hljs-built_in">this</span>.hashCode(key);<br>    <span class="hljs-keyword">const</span> linkedList = <span class="hljs-built_in">this</span>.table[position];<br>    <span class="hljs-keyword">if</span> (linkedList != <span class="hljs-literal">null</span> &amp;&amp; !linkedList.isEmpty()) &#123;<br>        <span class="hljs-keyword">let</span> current = linkedList.getHead();<br>        <span class="hljs-keyword">while</span> (current != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">if</span> (current.element.key === key)&#123;<br>                linkedList.remove(current.element);<br>                <span class="hljs-keyword">if</span> (linkedList.isEmpty()) &#123;<br>                    <span class="hljs-keyword">delete</span> <span class="hljs-built_in">this</span>.table[position];<br>                &#125;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>            current = current.next;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>get(key)：返回根据键值检索到的特定的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params">key</span>)</span> &#123;<br>    <span class="hljs-keyword">const</span> position = <span class="hljs-built_in">this</span>.hashCode(key);<br>    <span class="hljs-keyword">const</span> linkedList = <span class="hljs-built_in">this</span>.table[position];<br>    <span class="hljs-keyword">if</span>(linkedList != <span class="hljs-literal">null</span> &amp;&amp; !linkedList.isEmpty()) &#123;<br>        <span class="hljs-keyword">let</span> current = linkedList.getHead();<br>        <span class="hljs-keyword">while</span>(current != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">if</span>(current.element.key === key)&#123;<br>                <span class="hljs-keyword">return</span> current.element.value;<br>            &#125;<br>            current = current.next;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-线性探查"><a href="#2-线性探查" class="headerlink" title="2. 线性探查"></a>2. 线性探查</h4><p>将元素直接存储到表中</p>
+<p>当想向表中添加一个新元素的时候，如果索引为position的位置被占据，以此寻找position+1、position+2……直到有空的位置</p>
+<p><strong>删除键值对</strong>：</p>
+<ol>
+<li><p>软删除： 使用特殊的值（标记）来表示键值对被删除，并不是真的删除</p>
+<blockquote>
+<p>会降低散列表的效率，因为搜索键值会随时间变慢</p>
+</blockquote>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712152055.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>检验是否有必要将一个或多个元素移动到之前的位置。当搜索一个键的时候，这种方法可以避免找到一个空位置</p>
+<blockquote>
+<p>需要移动元素，挪动键值对</p>
+</blockquote>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712152417.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>方法</strong></p>
+<ul>
+<li><p>put(key,value)：向散列表增加一个新的项（也能更新散列表）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">put</span>(<span class="hljs-params">key, value</span>)</span> &#123;<br>    <span class="hljs-keyword">if</span>(key != <span class="hljs-literal">null</span> &amp;&amp; value != <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-keyword">const</span> position = <span class="hljs-built_in">this</span>.hashCode(key);<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.table[position] == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-built_in">this</span>.table[position] = <span class="hljs-keyword">new</span> ValuePair(key, value);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">let</span> index = position + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(<span class="hljs-built_in">this</span>.table[position] != <span class="hljs-literal">null</span>) &#123;  <span class="hljs-comment">//如果位置被占了，就找下一位</span><br>                index++;<br>            &#125;<br>            <span class="hljs-built_in">this</span>.table[index] = <span class="hljs-keyword">new</span> ValuePair(key, value);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>remove(key)：根据键值从散列表中移除值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">remove</span>(<span class="hljs-params">key</span>)</span> &#123;<br>    <span class="hljs-keyword">const</span> position = <span class="hljs-built_in">this</span>.hashCode(key);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.table[position] != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.table[position].key === key) &#123;<br>            <span class="hljs-keyword">delete</span> <span class="hljs-built_in">this</span>.table[position];<br>            <span class="hljs-built_in">this</span>.varifyRemoveSideEffect(key, position);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">let</span> index = position + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-built_in">this</span>.table[index] != <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-built_in">this</span>.table[index].key !== key) &#123;<br>            index++;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.table[index] != <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-built_in">this</span>.table[index].key === key) &#123;<br>            <span class="hljs-keyword">delete</span> <span class="hljs-built_in">this</span>.table[index];<br>            <span class="hljs-built_in">this</span>.verifyRemoveSideEffect(key, index);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-title">verifyRemoveSideEffect</span>(<span class="hljs-params">key, removedPosition</span>)</span> &#123;<br>    <span class="hljs-keyword">const</span> hash = <span class="hljs-built_in">this</span>.hashCode(key); <br>    <span class="hljs-keyword">let</span> index = removedPosition + <span class="hljs-number">1</span>; <br>    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">this</span>.table[index] != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">const</span> posHash = <span class="hljs-built_in">this</span>.hashCode(<span class="hljs-built_in">this</span>.table[index].key);<br>        <span class="hljs-keyword">if</span> (posHash &lt;= hash || posHash &lt;= removedPosition) &#123; <br>            <span class="hljs-built_in">this</span>.table[removedPosition] = <span class="hljs-built_in">this</span>.table[index];<br>            <span class="hljs-keyword">delete</span> <span class="hljs-built_in">this</span>.table[index];  removedPosition = index; <br>        &#125; <br>        index++; <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>get(key)：返回根据键值检索到的特定的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params">key</span>)</span> &#123;<br>    <span class="hljs-keyword">const</span> position = <span class="hljs-built_in">this</span>.hashCode(key);<br>    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.table[position] != <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.table[position].key === key) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.table[position].value;<br>        &#125;<br>        <span class="hljs-keyword">let</span> index = position + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-built_in">this</span>.table[index] != <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-built_in">this</span>.table[index].key !== key) &#123;<br>            index++;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.table[index] != <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-built_in">this</span>.table[index].key === key) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.table[position].value;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="5-ES2015Map类"><a href="#5-ES2015Map类" class="headerlink" title="5. ES2015Map类"></a>5. ES2015Map类</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();<br>map.set(<span class="hljs-string">&#x27;Gandalf&#x27;</span>, <span class="hljs-string">&#x27;gandalf@email.com&#x27;</span>);<br>map.set(<span class="hljs-string">&#x27;John&#x27;</span>, <span class="hljs-string">&#x27;johnsnow@email.com&#x27;</span>);<br>map.set(<span class="hljs-string">&#x27;Tyrion&#x27;</span>, <span class="hljs-string">&#x27;tyrion@email.com&#x27;</span>);<br><span class="hljs-built_in">console</span>.log(map.has(<span class="hljs-string">&#x27;Gandalf&#x27;</span>)); <span class="hljs-comment">// true console.log(map.size);</span><br><span class="hljs-built_in">console</span>.log(map.keys()); <span class="hljs-comment">// 输出&#123;&quot;Gandalf&quot;, &quot;John&quot;, &quot;Tyrion&quot;&#125; </span><br><span class="hljs-built_in">console</span>.log(map.values()); <span class="hljs-comment">// 输出&#123;&quot;gandalf@email.com&quot;, &quot;johnsnow@email.com&quot;, &quot;tyrion@email.com&quot;&#125;</span><br><span class="hljs-built_in">console</span>.log(map.get(<span class="hljs-string">&#x27;Tyrion&#x27;</span>)); <span class="hljs-comment">// tyrion@email.com</span><br>map.delete(<span class="hljs-string">&#x27;John&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-ES2105-WeakMap类和WeakSet类"><a href="#6-ES2105-WeakMap类和WeakSet类" class="headerlink" title="6. ES2105 WeakMap类和WeakSet类"></a>6. ES2105 WeakMap类和WeakSet类</h3><p>除了Set和Map这两种新的数据结构，ES2015还增加了它们的弱化版本，WeakSet和WeakMap</p>
+<p><strong>区别</strong>： </p>
+<ul>
+<li>WeakSet或WeakMap类没有entries、keys和values等方法</li>
+<li>只能用对象作为键</li>
+</ul>
+<p> 创建和使用这两个类主要是为了<strong>性能</strong>，WeakSet和WeakMap是弱化的（用对象作为键），没有强引用的键。这使得JavaScript的垃圾回收器可以从中清除整个入口。</p>
+<p>必须用键才可以取出值。这些类没有entries、keys和values等迭代器方法，因此，除非你知道键，否则没有办法取出值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"> <span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();<br><span class="hljs-keyword">const</span> ob1 = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Gandalf&#x27;</span> &#125;; <br><span class="hljs-keyword">const</span> ob2 = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;John&#x27;</span> &#125;;<br><span class="hljs-keyword">const</span> ob3 = &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Tyrion&#x27;</span> &#125;;<br>map.set(ob1, <span class="hljs-string">&#x27;gandalf@email.com&#x27;</span>);<br>map.set(ob2, <span class="hljs-string">&#x27;johnsnow@email.com&#x27;</span>);<br>map.set(ob3, <span class="hljs-string">&#x27;tyrion@email.com&#x27;</span>);<br><span class="hljs-built_in">console</span>.log(map.has(ob1)); <br><span class="hljs-built_in">console</span>.log(map.get(ob3)); <span class="hljs-comment">// tyrion@email.com &#123;4&#125; map.delete(ob2);</span><br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/js/">js</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/">散列表</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%BA%94%EF%BC%89%E5%AD%97%E5%85%B8/">
+                        <span class="hidden-mobile">数据结构（五）字典</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                <!-- <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'youlan-lan.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript> -->
+
+
+<script src="https://utteranc.es/client.js"
+        repo="youlan-lan/youlan-lan.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<noscript>Please enable JavaScript to view the comments</noscript>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div style="color:#0983CE"> 优岚的博客 | 记录过程</div> <div style="background-image: linear-gradient(to right, red, orange, yellow, green, yellow, orange, red, orange, yellow, green, yellow, orange, red);-webkit-background-clip: text;animation: move 5s infinite;color: transparent;"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
