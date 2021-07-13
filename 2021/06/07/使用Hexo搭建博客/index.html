@@ -212,7 +212,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      18
        分钟
     </span>
   
@@ -254,7 +254,7 @@
             
               <p class="note note-info">
                 
-                  文章内容进行过修改，最后更新于：2021年6月13日 下午
+                  文章内容进行过修改，最后更新于：2021年7月13日 晚上
                 
               </p>
             
@@ -335,6 +335,8 @@
 </blockquote>
 <h3 id="5-将Hexo部署到GitHub上"><a href="#5-将Hexo部署到GitHub上" class="headerlink" title="5. 将Hexo部署到GitHub上"></a>5. 将Hexo部署到GitHub上</h3><p>找到配置文件 <code>_config.yml</code>，翻到最后，根据自己的仓库进行配置</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-comment"># YourgithubName需要改成你的GitHub账号名</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/YourgithubName/YourgithubName.github.io.git</span><br>  <span class="hljs-comment"># 这里是你的代码推送到的分支名</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br></code></pre></td></tr></table></figure>
+<p style="color:red">注意：</p>
+<p style="color:red">这里的branch需要填写仓库主支名，不然页面打开是没有效果的~</p>
 
 <p>安装deploy-git：</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">$ npm install hexo-deployer-git <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
