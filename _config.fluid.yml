@@ -371,7 +371,7 @@ footer:
   # 页脚第一行文字的 HTML，建议保留 Fluid 的链接，用于向更多人推广本主题
   # HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
   content: '
-    <div style="color:#0983CE"> 优岚的博客 | 记录成长的过程</div>
+    <div style="color:#0983CE"> 优岚的博客 | 记录过程</div>
     <div style="background-image: linear-gradient(to right, red, orange, yellow, green, yellow, orange, red, orange, yellow, green, yellow, orange, red);-webkit-background-clip: text;animation: move 5s infinite;color: transparent;">
       <span id="timeDate">载入天数...</span>
       <span id="times">载入时分秒...</span>
@@ -541,15 +541,15 @@ post:
   # 在文章开头显示文章更新时间，该时间默认是 md 文件更新时间，可通过 front-matter 中 `updated` 手动指定（和 date 一样格式）
   # Update date is displayed at the beginning of the post. The default date is the update date of the md file, which can be manually specified by `updated` in front-matter (same format as date)
   updated:
-    enable: true
+    enable: false
 
     # 描述文字
     # Descriptive text before date
-    content: 本文最后更新于：
+    content: 文章内容进行过修改，最后更新于：
 
     # 是否使用相对时间表示，比如："3 天前"
     # If true, it will be a relative time, such as: "3 days ago"
-    relative: true
+    relative: false
 
   # 文章右侧目录
   # Table of contents (TOC)
@@ -892,9 +892,21 @@ links:
   items:
     - {
       title: "kakkk",
-      intro: "捕捉一只大佬！",
+      intro: "折腾捣蛋达人，没有什么是代码不能解决的",
       link: "https://blog.kakkk.net/",
       avatar: "https://gitee.com/youlan_lan/md_image/raw/master/20210610181759.jpeg"
+    }
+    - {
+      title: "Alogomachine",
+      intro: "数学编程大佬，专注于算法和开发",
+      link: "https://alogomachine.com/",
+      avatar: "https://alogomachine-md-pic.oss-cn-guangzhou.aliyuncs.com/20210225222957_1baea.jpeg"
+    }
+    - {
+      title: "martina-x",
+      intro: "前端开发，用三剑客打造视觉效果",
+      link: "https://martina-x.github.io/",
+      avatar: "https://gitee.com/youlan_lan/md_image/raw/master/20210713183012.png"
     }
     # - {
     #   title: "Fluid Blog",

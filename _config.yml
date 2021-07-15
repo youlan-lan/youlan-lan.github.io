@@ -106,20 +106,33 @@ deploy:
   repo: https://github.com/youlan-lan/youlan-lan.github.io.git
   branch: master
 
-#二次元
-live2d:
-  enable: true
-  scriptFrom: local
-  pluginRootPath: live2dw/
-  pluginJsPath: lib/
-  pluginModelPath: assets/
-  tagMode: false
-  debug: false
-  model:
-    use: live2d-widget-model-wanko #这个是你要修改的
-  display:
-    position: right #在屏幕上的显示位置
-    width: 85 #显示宽度
-    height: 170 #显示高度
-  mobile:
-    show: false #手机端是否显示
+# #二次元
+# live2d:
+#   enable: true
+#   scriptFrom: local
+#   pluginRootPath: live2dw/
+#   pluginJsPath: lib/
+#   pluginModelPath: assets/
+#   tagMode: false
+#   debug: false
+#   model:
+#     use: live2d-widget-model-wanko #这个是你要修改的
+#   display:
+#     position: right #在屏幕上的显示位置
+#     width: 85 #显示宽度
+#     height: 170 #显示高度
+#   mobile:
+#     show: false #手机端是否显示
+
+# 添加萌妹子效果
+# live2d:
+#   enable: true
+#   scriptFrom: local  
+#   model:
+#     use: live2d-widget-model-koharu    #妹子有很多个，叫名字他才出来
+#   display:    
+#     position: right
+#     width: 150
+#     height: 300
+#   mobile:
+#     show: true

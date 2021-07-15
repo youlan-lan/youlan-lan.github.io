@@ -1,5 +1,5 @@
 ---
-title: 【手把手傻瓜式系列2】 Fluid 主题配置教程
+title: 【手把手系列2】 Fluid 主题配置教程
 index_img: https://avatars2.githubusercontent.com/t/3419353?s=280&v=4
 categories:
 - 博客搭建

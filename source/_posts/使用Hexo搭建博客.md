@@ -1,5 +1,5 @@
 ---
-title: 【手把手傻瓜式系列1】使用Hexo搭建博客（基础版）
+title: 【手把手系列1】使用Hexo搭建博客（基础版）
 index_img: https://gitee.com/youlan_lan/md_image/raw/master/20210607012255.png
 categories:
 - 博客搭建
@@ -136,6 +136,8 @@ deploy:
   # 这里是你的代码推送到的分支名
   branch: master
 ```
+<p style="color:red">注意：</p>
+<p style="color:red">这里的branch需要填写仓库主支名，不然页面打开是没有效果的~</p>
 
 安装deploy-git：
 
