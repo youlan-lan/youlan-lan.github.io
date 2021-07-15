@@ -317,7 +317,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> hasCycle = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">head</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> slow = head;<br>    <span class="hljs-keyword">let</span> fast = head;<br>    <span class="hljs-keyword">while</span>(slow &amp;&amp; fast &amp;&amp; fast.next) &#123;<br>        slow = slow.next;<br>        fast = fast.next.next;<br>        <span class="hljs-keyword">if</span>(slow === fast)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <p>快慢指针： 快慢指针遇上，表明有环</p>
-<h3 id="8-应用"><a href="#8-应用" class="headerlink" title="8. 应用"></a>8. 应用</h3><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.youlan-lan.xyz/2021/07/10/%E5%89%8D%E7%AB%AF%E4%B8%8E%E9%93%BE%E8%A1%A8/">《前端与链表》</a></p>
+<h3 id="8-应用"><a href="#8-应用" class="headerlink" title="8. 应用"></a>8. 应用</h3><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.youlan-lan.xyz/2021/07/10/2107102/">《前端与链表》</a></p>
 
             </div>
             <hr>
@@ -341,9 +341,9 @@
                     
                       <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
                     
-                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
+                    
+                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
                     
                   </div>
                 
