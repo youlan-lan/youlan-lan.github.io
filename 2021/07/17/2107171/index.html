@@ -18,7 +18,7 @@
   <meta name="author" content="优岚">
   <meta name="keywords" content="">
   
-  <title>递归 - 优岚的博客</title>
+  <title>浅谈 JavaScript_callback() 回调函数 - 优岚的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="递归">
+            <span class="h2" id="subtitle" title="浅谈 JavaScript_callback() 回调函数">
               
             </span>
 
@@ -190,8 +190,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-15 11:41" pubdate>
-        2021年7月15日 中午
+      <time datetime="2021-07-17 12:00" pubdate>
+        2021年7月17日 中午
       </time>
     </span>
   
@@ -202,7 +202,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      742 字
+      940 字
     </span>
   
 
@@ -212,7 +212,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      11
        分钟
     </span>
   
@@ -250,55 +250,63 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">递归</h1>
+            <h1 style="display: none">浅谈 JavaScript_callback() 回调函数</h1>
             
             <div class="markdown-body">
-              <blockquote>
-<p>递归，可以通俗地理解为：无限套娃。</p>
+              <p>在<strong>MDN</strong>的文档中，对**callback()**的定义为：</p>
+<p><em>被作为实参传入另一函数，并在该外部函数内被调用，用以来完成某些任务的函数，称为回调函数。</em></p>
+<p><em>A callback is a function that is passed as an argument to another function and is executed after its parent function has completed.</em></p>
+<h3 id="1-理解回调函数"><a href="#1-理解回调函数" class="headerlink" title="1. 理解回调函数"></a>1. 理解回调函数</h3><p><strong>调用过程</strong>：函数a的参数为函数b，当函数a执行完之后再去执行b</p>
+<blockquote>
+<p>或许，可以通俗地认为：做完函数a的事情，再去做函数b的事情</p>
 </blockquote>
-<p>我们都听过：“从前有座山，山里有座庙，庙里有个和尚，和尚在讲故事，讲的是，从前有座山，山里……”</p>
-<p>这个就是一种递归，先执行自己的部分，然后再调用自己，进行无限循环</p>
-<h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>在《学习 JavaScript 数据结构与算法（第三版）》书中，对递归的定义为：</p>
-<p><em>递归是一种解决问题的方法，它从解决问题的各个小部分开始，直到解决最初的大问题。递归通常涉及函数调用自身</em></p>
-<p><strong>形式一</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recursiveFunction</span>(<span class="hljs-params">someParam</span>) </span>&#123;<br>  recursiveFunction(someParam);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>再<strong>打个比方</strong>：</p>
+<p>你去上学，妈妈送你去上学并叮嘱你要记得将缴费单交给老师。</p>
+<p>此时，函数a为妈妈送你上学，函数b为你将缴费单交给老师。也就是你要做完函数a，才会去执行函数b。</p>
+<p><strong>提个疑问</strong>:</p>
+<p>Q：为什么不直接把整个事情在函数a中写好，而是要通过一个参数进行回调呢？</p>
+<p>A：如果你直接写进去，<code>function a()&#123;...;b();&#125;</code>，那就直接写死了，失去了变量的灵活性。当你要传入别的函数时，需要重新写一遍函数a。</p>
+<h3 id="2-代码展示"><a href="#2-代码展示" class="headerlink" title="2. 代码展示"></a>2. 代码展示</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params">callback</span>) </span>&#123;      <br>   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;parent函数a！&quot;</span>);   <br>   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;调用回调函数&quot;</span>);   <br>   callback(); <span class="hljs-comment">// 调用回调函数</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"></span>)</span>&#123; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;回调函数b&quot;</span>); &#125;   <br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">c</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;回调函数c&quot;</span>); &#125;   <br>  <br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>)</span>&#123; a(b); a(c); &#125;<br><br>test();<br></code></pre></td></tr></table></figure>
 
-<p><strong>形式二</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recursiveFunction1</span>(<span class="hljs-params">someParam</span>) </span>&#123;<br>  recursiveFunction2(someParam);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recursiveFunction2</span>(<span class="hljs-params">someParam</span>) </span>&#123;<br>  recursiveFunction1(someParam);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-为什么需要回调"><a href="#3-为什么需要回调" class="headerlink" title="3. 为什么需要回调"></a>3. 为什么需要回调</h3><p>JavaScript 在浏览器中运行，浏览器的主进程是<strong>单线程事件循环</strong>。如果我们尝试在单线程事件循环中，<u>执行长时间运行</u>的操作，则会阻止该过程。</p>
+<p>JavaScript 是按从上到下的顺序运行代码。在有些情况下，<strong>必须在某些情况发生之后</strong>，代码才能运行，这就不是按顺序运行了。这是异步编程。</p>
+<p>回调函数确保：函数在某个任务完成之前不运行，在任务完成之后立即运行。它帮助我们编写异步 JavaScript 代码，避免问题和错误。</p>
+<p>在 JavaScript 里创建回调函数的方法是：将它作为参数传递给另一个函数，然后当某个任务完成之后，立即调用它。</p>
+<h3 id="4-Javascript-回调地狱"><a href="#4-Javascript-回调地狱" class="headerlink" title="4.  Javascript 回调地狱"></a>4.  Javascript 回调地狱</h3><p>当多个异步函数一个接一个地执行时，会产生<strong>回调地狱</strong>。它也被称为<strong>厄运金字塔</strong>。</p>
+<p>代码变得更加难以理解，以及难以维护和修改。这是由回调函数的嵌套而引发的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> p_client = <span class="hljs-keyword">new</span> Db(<span class="hljs-string">&#x27;integration_tests_20&#x27;</span>, <span class="hljs-keyword">new</span> Server(<span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-number">27017</span>, &#123;&#125;), &#123;<span class="hljs-string">&#x27;pk&#x27;</span>:CustomPKFactory&#125;);<br>   p_client.open(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, p_client</span>) </span>&#123;<br>       p_client.dropDatabase(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, done</span>) </span>&#123;<br>           p_client.createCollection(<span class="hljs-string">&#x27;test_custom_key&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, collection</span>) </span>&#123;<br>               collection.insert(&#123;<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-number">1</span>&#125;, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, docs</span>) </span>&#123;<br>                   collection.find(&#123;<span class="hljs-string">&#x27;_id&#x27;</span>:<span class="hljs-keyword">new</span> ObjectID(<span class="hljs-string">&quot;aaaaaaaaaaaa&quot;</span>)&#125;, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, cursor</span>) </span>&#123;<br>                       cursor.toArray(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, items</span>) </span>&#123;<br>                           test.assertEquals(<span class="hljs-number">1</span>, items.length);<br> <br>                           <span class="hljs-comment">// Let&#x27;s close the db</span><br>                           p_client.close();<br>                       &#125;);<br>                   &#125;);<br>               &#125;);<br>           &#125;);<br>       &#125;);<br>   &#125;);<br><br></code></pre></td></tr></table></figure>
 
-<p>上述两种形式的递归，都没有基线条件，及没有停止点，会一直递归下去，造成<strong>栈溢出</strong>的现象。故，一般在使用递归的时候，都会进行条件判断，满足条件之后就跳出递归，避免一直死循环下去。</p>
-<h3 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h3><h4 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h4><p><strong>迭代阶乘</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorialIterative</span>(<span class="hljs-params">number</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (number &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;<br>  <span class="hljs-keyword">let</span> total = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n = number; n &gt; <span class="hljs-number">1</span>; n--) &#123;<br>    total = total * n;<br>  &#125;<br>  <span class="hljs-keyword">return</span> total;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>递归阶乘</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span>(<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span> || n === <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> n * factorial(n - <span class="hljs-number">1</span>); <span class="hljs-comment">// 通过再次调用自身，进行计算</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>每当一个函数被一个算法调用时，该函数会进入调用栈的顶部</p>
-<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210715105325.png" srcset="/img/loading.gif" lazyload alt="栈调用情况"></p>
-<p>如果没有添加用以停止函数递归的调用的基线条件，当出现栈溢出错误时，浏览器会抛出错误</p>
-<h4 id="斐波那契数"><a href="#斐波那契数" class="headerlink" title="斐波那契数"></a>斐波那契数</h4><p>由 0、1、1、2、3、5、8、13、21、34 等数组成的序列。数 2 由 1 + 1 得到，数 3 由 1 + 2 得到，数 5 由 2 + 3 得到，以此类推。斐波那契数列的定义：</p>
+<p> ↑ 就如上面的代码</p>
+<h3 id="5-如何避免回调地狱？"><a href="#5-如何避免回调地狱？" class="headerlink" title="5. 如何避免回调地狱？"></a>5. 如何避免回调地狱？</h3><ol>
+<li>使用promise</li>
+<li>借助 async-await</li>
+<li>使用 async.js 库</li>
+</ol>
+<blockquote>
+<p>这里就不细讲了</p>
+</blockquote>
+<h3 id="6-优点和使用场景"><a href="#6-优点和使用场景" class="headerlink" title="6. 优点和使用场景"></a>6. 优点和使用场景</h3><p><strong>用一句话概括：在直接调用函数A()时，把另一个函数B()作为参数，传入函数A()里面，以此来通过函数A()间接调用函数B()。</strong></p>
+<p><strong>优点</strong></p>
 <ul>
-<li>位置 0 的斐波那契数是零</li>
-<li>1 和 2 的斐波那契数是 1</li>
-<li>n（此处 n &gt; 2）的斐波那契数是（n - 1）的斐波那契数加上（n - 2）的斐波那契数</li>
+<li><p>DRY，避免重复代码</p>
+</li>
+<li><p>可以将通用的逻辑抽象</p>
+</li>
+<li><p>加强代码可维护性</p>
+</li>
+<li><p>加强代码可读性</p>
+</li>
+<li><p>分离专职的函数</p>
+</li>
 </ul>
-<p><strong>迭代求斐波那契数</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibonacciIterative</span>(<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">let</span> fibNMinus2 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> fibNMinus1 = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">let</span> fibN = n;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;<br>    fibN = fibNMinus1 + fibNMinus2;<br>    fibNMinus2 = fibNMinus1;<br>    fibNMinus1 = fibN;<br>  &#125;<br>  <span class="hljs-keyword">return</span> fibN;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>递归求斐波那契数</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibonacci</span>(<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">20</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">return</span> fibonacci(n - <span class="hljs-number">1</span>) + fibonacci(n - <span class="hljs-number">2</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>记忆化</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibonacciMemoization</span>(<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> memo = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]; <span class="hljs-comment">//第1,2个数已经写好了</span><br>  <span class="hljs-keyword">const</span> fibonacci = <span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (memo[n] != <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> memo[n]; <span class="hljs-comment">//如果是第1,2个数，直接返回本身</span><br>    <span class="hljs-keyword">return</span> (memo[n] = fibonacci(n - <span class="hljs-number">1</span>, memo) + fibonacci(n - <span class="hljs-number">2</span>, memo)); <span class="hljs-comment">//存缓存</span><br>  &#125;;<br>  <span class="hljs-keyword">return</span> fibonacci(n);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="3-速度"><a href="#3-速度" class="headerlink" title="3. 速度"></a>3. 速度</h3><p>从测试上看，迭代的速度会比递归的快很多。</p>
-<p>使用递归的好处：</p>
+<p><strong>使用场景</strong></p>
 <ul>
-<li>代码量少</li>
-<li>结构清晰，易懂</li>
+<li>异步执行(例如读文件，发送HTTP请求)</li>
+<li>事件监听和处理</li>
+<li>设置超时和时间间隔的方法</li>
+<li>通用化：代码简洁 </li>
 </ul>
-<p>递归主要是调用函数，需要不断地进行进栈出栈，所以消耗时间较多</p>
-<p>具体可查看：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6bdc8e3637f2">《递归为什么那么慢？递归的改进算法》</a></p>
+<p>一篇关于callback()的好文：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021942060"><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021942060">从零起步，真正理解Javascript回调函数</a></a></p>
 
             </div>
             <hr>
@@ -308,9 +316,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95/js/">js</a>
+                      <a class="hover-with-bg" href="/categories/js%E5%9F%BA%E7%A1%80/">js基础</a>
                     
                   </div>
                 
@@ -320,9 +326,7 @@
                     
                       <a class="hover-with-bg" href="/tags/js/">js</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%80%92%E5%BD%92/">递归</a>
+                      <a class="hover-with-bg" href="/tags/%E5%9B%9E%E8%B0%83/">回调</a>
                     
                   </div>
                 
@@ -339,18 +343,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/17/2107171/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">浅谈 JavaScript_callback() 回调函数</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/13/2107131/">
-                        <span class="hidden-mobile">前端面试题大全</span>
+                      <a href="/2021/07/15/2107151/">
+                        <span class="hidden-mobile">递归</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
