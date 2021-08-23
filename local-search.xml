@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>前端开发的入门级别学习指导</title>
+    <link href="/2021/08/23/210823/"/>
+    <url>/2021/08/23/210823/</url>
+    
+    <content type="html"><![CDATA[<h2 id="写在最前面"><a href="#写在最前面" class="headerlink" title="写在最前面"></a>写在最前面</h2><ol><li><p><strong>抓住主干</strong>、<strong>学会看文档</strong>，前端更新太快了，看文档学习是必备的一个技能。</p></li><li><p>基础语法推荐看文档学习，直接上来就看，直到看懵，懵了就可以开始找视频了；如果是一帆风顺到了end，emmm看样子基础还不错，<u>如果把握不住主干</u>还是找个视频看一看，过一遍主干。视频可以是<strong>简短精髓</strong>，这么短的视频还讲到的知识点：主干。</p><p>新手学习文档的最大一个问题：<strong>抓不住主干</strong></p></li><li><p> 本文在不断地鼓励你行动，思考，跳出舒适圈</p></li></ol><h2 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h2><h3 id="1-初入门"><a href="#1-初入门" class="headerlink" title="1. 初入门"></a>1. 初入门</h3><p>前端三剑客：HTML、CSS、JavaScript</p><ul><li><p>文档教程：w3school</p></li><li><p>书籍：《JavaScript高级程序设计》、《你不知道的JavaScript》（建议这两个当工具书，不要直接生啃）</p></li><li><p>视频：</p><p><a href="https://www.bilibili.com/video/BV14J4114768?from=search&amp;seid=4675165827148059792">https://www.bilibili.com/video/BV14J4114768?from=search&amp;seid=4675165827148059792</a></p><p><a href="https://www.bilibili.com/video/BV1ux411d75J?from=search&amp;seid=16934986572584343839">https://www.bilibili.com/video/BV1ux411d75J?from=search&amp;seid=16934986572584343839</a></p></li></ul><h4 id="建议："><a href="#建议：" class="headerlink" title="建议："></a>建议：</h4><p><strong>基础语法部分：</strong></p><p>文档＋简短视频</p><ul><li>这个简短视频，我推荐一个：中国大学mooc上的《web前端开发》，后面有案例</li><li><a href="https://coding.imooc.com/">慕课网</a>的互动式教程，可以在上面跟着敲代码（多实践）<ul><li><a href="https://www.imooc.com/learn/9">https://www.imooc.com/learn/9</a></li><li><a href="https://www.imooc.com/learn/36">https://www.imooc.com/learn/36</a></li><li><a href="https://www.imooc.com/learn/10">https://www.imooc.com/learn/10</a></li></ul></li><li>js高级部分，了解 可以不需要掌握，概念留个印象就可以了，后面慢慢实践出真知</li></ul><p><strong>实战部分：</strong></p><p>视频：需要学习老师在开发中如何建文件夹、写html结构、命名规范等等，这些细节从文档上很难学到</p><ol><li>静态，仿一个主页：跟着视频抄一遍 + 自己写一遍（html css不用每条都背下来。。。写完这个案例也大概悟到了什么是常用的，忘了去查文档去搜就行了）</li><li>js部分：dom&amp;bom，跟着抄一个实战（不会写也行）</li></ol><h3 id="2-进入大门了"><a href="#2-进入大门了" class="headerlink" title="2. 进入大门了"></a>2. 进入大门了</h3><p><strong>这一部分是重点</strong></p><ol><li><p>选择一门喜欢的框架：vue3  / React</p><ul><li>官方文档</li></ul></li><li><p>es6</p><ul><li><p>阮一峰：<a href="https://es6.ruanyifeng.com/">https://es6.ruanyifeng.com/</a></p></li><li><p>慕课网的一门付费课程：《再学JavaScript ES(6-11)全版本语法大全》</p><p>笔记：<a href="http://es.xiecheng.live/">http://es.xiecheng.live/</a></p></li></ul></li><li><p>git</p><ul><li>廖雪峰git教程</li><li><a href="https://learngitbranching.js.org/?locale=zh_CN">https://learngitbranching.js.org/?locale=zh_CN</a></li></ul></li></ol><h4 id="建议：-1"><a href="#建议：-1" class="headerlink" title="建议："></a>建议：</h4><ol><li><p>关于bootstrap，angular或jQuery，不学，了解一下是什么</p></li><li><p>先熟练掌握一门框架，vue中文资源多；react的话，造轮子方便，以后<strong>进了</strong>大厂方便（学好vue也能进）</p></li><li><p>学框架之前学一下es6，学完变量，函数，类，模块化之后，框架&amp;es6一起学习</p></li><li><p>这里需要大量实战，跟着视频实战后，到github上找优秀的项目模仿，模仿代码、文件结构、命名等</p></li><li><p>这里需要大量实战，跟着视频实战后，到github上找优秀的项目模仿，模仿代码、文件结构、命名等</p><ul><li><p>这里的实战，你会接触到很多新的东西：ui库、mock、webpack、css预处理器等等，按需学习，即学即用</p></li><li><p>在这一环节里，你可能需要往前去捡之前没学懂的东西</p></li></ul><blockquote><p>比如，你之前学了promise异步操作，也许课程里/教程里给你讲了什么时候用，用法是什么，但你要把这个真正用到项目里，可能你要经历：</p><ol><li>项目中发现同步达不到想要的效果</li><li>搜索解决的办法，好像又不太知道什么技术可以解决</li><li>兜了一圈，发现原来是因为没有使用异步</li><li>赶紧去搜了异步的写法</li><li>用了几次之后，明白了这个写法，想要探索这背后的原理</li><li>发现原来之前自己是学过的，知识回顾，串起来<br>这就是为什么前面说js高级了解但不用掌握的原因了，实际上js高级非常重要，但是你需要一定的实践碰壁后才有感悟，曲线救国之后你一定会感谢这个特性让你更加方便编程</li></ol></blockquote></li></ol><ol start="4"><li>实战1-2个项目之后，可以开始读源码，配合课程一起啃</li></ol><h3 id="3-工程化"><a href="#3-工程化" class="headerlink" title="3. 工程化"></a>3. 工程化</h3><p>之后还有<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/">小程序</a>、node、TypeScript、可视化……</p><h4 id="建议：-2"><a href="#建议：-2" class="headerlink" title="建议："></a>建议：</h4><p>到了这部分，知识面越来越广，这些按需学习，根据项目、自己的兴趣进行学习，学习资源也不推荐了，你肯定已经学会自己找资源了。</p><h3 id="4-基础"><a href="#4-基础" class="headerlink" title="4. 基础"></a>4. 基础</h3><ol><li>数据结构和算法<ul><li>书籍：《学习JavaScript数据结构与算法（第3版）》</li><li>课程：<ul><li>慕课网上的《JavaScript版数据结构与算法》</li></ul></li><li>刷题：LeetCode</li></ul></li><li>计网、操作系统、数据库、计组<ul><li>计算机科学速成课：<a href="https://www.bilibili.com/video/av21376839">https://www.bilibili.com/video/av21376839</a></li></ul></li></ol><h4 id="建议：-3"><a href="#建议：-3" class="headerlink" title="建议："></a>建议：</h4><ol><li>开始学框架的时候，一起学数据结构和算法，多刷题</li><li>学完一个框架实战之后，一起学计算机网络、浏览器工作原理</li><li>node学习前需要学习操作系统、数据库</li></ol><h3 id="5-关于笔记"><a href="#5-关于笔记" class="headerlink" title="5. 关于笔记"></a>5. 关于笔记</h3><ul><li>  typora+picgo+gitee</li><li>  语雀 / 印象笔记等</li><li>  <strong>掘金</strong>、CSDN、博客园</li><li>  <strong>自己搭建博客</strong>：hexo+github</li></ul><h4 id="建议：-4"><a href="#建议：-4" class="headerlink" title="建议："></a>建议：</h4><ol><li> 好记性不如烂笔头，记笔记可以暂缓你的学习速度，让你慢下来思考</li><li> 方便以后查阅，记录成长的点点滴滴，看着笔记越来越多成就感满满 nice√</li><li> 学完三剑客之后，<strong>自己搭一个博客</strong>，然后把之前做的笔记整理一下放上去</li><li>博客以后面试可以做加分项（具体有什么buff自己去查查）</li></ol><h2 id="一些干货吧"><a href="#一些干货吧" class="headerlink" title="一些干货吧"></a>一些干货吧</h2><ul><li><p><strong>编译器：</strong> vscode /  submit text</p><p>vscode一些好用的插件安装：<a href="https://blog.csdn.net/qq_38698753/article/details/93190356">https://blog.csdn.net/qq_38698753/article/details/93190356</a></p></li><li><p><strong>浏览器：</strong> Chrome、火狐、Microsoft Edge（后面两个几乎不用）</p><ul><li>使用谷歌搜索，不要百度搜索（谷歌访问助手）</li><li>浏览器插件：沙拉查词，allow copy，谷歌访问助手，GitHub加速，JSON-handle</li><li>浏览器打开github项目，在地址github.com/xxxxxx中加入<code>1s</code>，github<strong>1s</strong>.com/xxxxxx进入一个在线编辑器的页面</li></ul></li><li><p><strong>到哪里找学习资源：</strong></p><ul><li>一个资源库：<a href="https://www.code-nav.cn/">https://www.code-nav.cn/</a></li></ul><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/17805cb5607f43e4b71ec5b0d9bcca79~tplv-k3u1fbpfcp-zoom-1.image"></p><ul><li><p>学习视频：</p><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/12d575ee22ac45c18977fdaf1e3dac86~tplv-k3u1fbpfcp-zoom-1.image"></p><ul><li><p>b站尚硅谷：<a href="https://www.bilibili.com/read/cv5650633">https://www.bilibili.com/read/cv5650633</a></p></li><li><p>b站黑马：<a href="https://www.bilibili.com/read/cv10431130">https://www.bilibili.com/read/cv10431130</a></p><blockquote><p>这两家b站上的视频平均质量比较高</p></blockquote></li></ul></li></ul></li><li><p><strong>优秀书籍目录：</strong> <a href="https://github.com/yayxs/bilibili-video-tutorial/tree/books-share">https://github.com/yayxs/bilibili-video-tutorial/tree/books-share</a></p></li><li><p><strong>ui设计：</strong></p><ul><li><a href="https://undraw.co/illustrations">Illustrations | svg图下载</a></li><li><a href="https://logopond.com/">Logopond - Logo, Brand &amp; Identity Inspiration</a></li><li><a href="https://dribbble.com/">Dribbble ui作品</a>（写项目不知道该怎么设计页面，来这找找灵感，以及谷歌图片搜索）</li><li><a href="https://www.iconfont.cn/home/index?spm=a313x.7781069.1998910419.2">iconfont图标库</a></li></ul></li><li><p><strong>CSS：</strong></p><ul><li><a href="https://flatuicolors.com/">UI Colors 🎨</a></li><li><a href="https://webgradients.com/">css渐变</a></li><li><a href="https://lottiefiles.com/">动画 LottieFiles</a></li><li><a href="https://animate.style/">Animate.css</a></li></ul></li></ul><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>学习路线只是建议，具体怎么实行，看自己，多去看看大佬们的推荐吧</p><p>建议进度：</p><ol><li>11月前找找自己的感兴趣方向，如果对前端开发感兴趣，可以按照上文写的建议进行学习</li><li>1月前：学会写静态网站，js基础语法</li><li>寒假：掌握es6 + 框架基础语法</li><li>4月前：框架全家桶</li><li>后面的。。。自己根据自己的情况来制定计划叭</li></ol><p>多关注校招，大概在学框架基础语法之后就可以开始查找一些校招的东西，看看怎么准备</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试</tag>
+      
+      <tag>学习方法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>浅谈 JavaScript_callback() 回调函数</title>
     <link href="/2021/07/17/2107171/"/>
     <url>/2021/07/17/2107171/</url>
@@ -232,9 +259,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>链表</tag>
+      
+      <tag>LeetCode</tag>
       
     </tags>
     
@@ -265,9 +292,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>链表</tag>
+      
+      <tag>LeetCode</tag>
       
       <tag>面试</tag>
       
@@ -300,9 +327,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>队列</tag>
-      
       <tag>LeetCode</tag>
+      
+      <tag>队列</tag>
       
     </tags>
     
