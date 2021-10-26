@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Vue源码解析之虚拟DOM和diff算法</title>
+    <link href="/2021/10/27/2110271/"/>
+    <url>/2021/10/27/2110271/</url>
+    
+    <content type="html"><![CDATA[<p><strong>举个小栗子：</strong></p><p>我们要对一个屋子进行装修，装修图上只是对一部分空间进行改造，现有两种选择：①全拆了再按照装修图进行建造，②根据装修图，只对修改部分进行建造。</p><p>关于真实dom和虚拟dom的区别大致和上述例子相同，真实dom是①每一次修改都需要拆了之前的再新建，而虚拟dom是②通过比对不同，通过appendchild等来操作dom节点。</p><p>渲染真实dom的开销非常大，和页面性能优化中的重绘重排意义类似。当我们修改了页面中的某个数据，如果直接渲染到真实DOM中会引起整棵数的重绘重排, 如果我们使用虚拟dom，只让我们修改的数据映射到真实DOM, 做一个最少化重绘重排，这样的页面性能优化将大大提高。</p><h2 id="虚拟dom"><a href="#虚拟dom" class="headerlink" title="虚拟dom"></a>虚拟dom</h2><p>将真实的DOM的数据抽取出来，以对象的形式模拟树形结构</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;div&gt;<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>你好<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br>&lt;/div&gt;<br><br><span class="hljs-comment">// VNode:</span><br><span class="hljs-keyword">const</span> Vnode = &#123;<br>    <span class="hljs-attr">tag</span>: <span class="hljs-string">&#x27;div&#x27;</span>,<br>    <span class="hljs-attr">children</span>: [<br>        &#123; <span class="hljs-attr">tag</span>: <span class="hljs-string">&#x27;p&#x27;</span>, <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;你好&#x27;</span> &#125;<br>    ]<br>&#125;;<br></code></pre></td></tr></table></figure><p><strong>1. h函数用来产生虚拟节点</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> hFun = h(<span class="hljs-string">&#x27;a&#x27;</span>, &#123; <span class="hljs-attr">props</span>:&#123; <span class="hljs-attr">href</span>: <span class="hljs-string">&#x27;http:baidu.com&#x27;</span> &#125; &#125;, <span class="hljs-string">&#x27;百度&#x27;</span>);<br><br><span class="hljs-comment">// 将得到这样的虚拟节点:</span><br>&#123;<span class="hljs-string">&#x27;sel&#x27;</span>: <span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;data&#x27;</span>: &#123; <span class="hljs-attr">props</span>: &#123; <span class="hljs-attr">href</span>: <span class="hljs-string">&#x27;http:baidu.com&#x27;</span> &#125; &#125;, <span class="hljs-string">&#x27;text&#x27;</span>: <span class="hljs-string">&#x27;百度&#x27;</span>&#125;;<br><br><span class="hljs-comment">// 得到的真正DOM节点</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span> = <span class="hljs-string">&quot;http:baidu.com&quot;</span> &gt;</span>百度<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></code></pre></td></tr></table></figure><p><strong>2. 虚拟节点的属性</strong></p><p><code>childred</code>    <code>data</code>    <code>elm</code>    <code>key</code>    <code>sel</code>    <code>text</code></p><p><strong>3. h函数使用patch函数进行”上树“</strong></p><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211026223413.png" alt="image-20211026223413361"></p><h2 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h2><p>简单的说：就是新旧虚拟dom 的比较，如果有差异就以新的为准，然后再插入的真实的dom中，重新渲染。</p><p><strong>1.  在diff中，key起着非常重要的作用</strong></p><ul><li>无key：新的和旧的只会在进行头尾两端比较</li><li>有key：除了比较头尾两端，还会根据key生成对象<code>oldKeyToIdx</code>中查找匹配的节点</li></ul><blockquote><p>为节点设置key可以更高效的利用dom</p></blockquote><p>例如：</p><p>在B和C之间加一个F，Diff算法默认执行起来是这样的：C更新成F，D更新成C，E更新成D，最后再插入E，这个效率emmm。。。。。。</p><p>如果我们给每个节点设置好key，Diff算法就可以正确的识别此节点，找到正确的位置区插入新的节点。</p><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211027004427.png" alt="img"></p><blockquote><p>哦豁，for循环要设置key…..</p></blockquote><p><strong>2. 特点</strong></p><ul><li>只会做同级比较，不做跨级比较</li><li>比较后几种情况<ul><li><code>if (oldVnode === vnode)</code>，他们的引用一致，可以认为没有变化。</li><li><code>if(oldVnode.text !== null &amp;&amp; vnode.text !== null &amp;&amp; oldVnode.text !== vnode.text)</code>，文本节点的比较，需要修改，则会调用<code>Node.textContent = vnode.text</code>。</li><li><code>if( oldCh &amp;&amp; ch &amp;&amp; oldCh !== ch )</code>, 两个节点都有子节点，而且它们不一样，这样我们会调用<code>updateChildren</code>函数比较子节点，这是diff的核心</li><li><code>else if (ch)</code>，只有新的节点有子节点，调用<code>createEle(vnode)</code>，<code>vnode.el</code>已经引用了老的dom节点，<code>createEle</code>函数会在老dom节点上添加子节点。</li><li><code>else if (oldCh)</code>，新节点没有子节点，老节点有子节点，直接删除老节点。</li></ul></li></ul><p><strong>3. 总结</strong></p><ul><li><p>只有是同一个虚拟节点，才进行精细化比较，否则就是暴力删除旧的、插入新的</p></li><li><p>定义同一个虚拟节点：选择器系统 &amp;&amp; key相同</p></li><li><p><strong>key是节点的唯一标识</strong></p></li><li><p>只进行<strong>同层</strong>比较，不会进行跨层比较</p></li><li><p>diff不是万能的，肯定有情况是做不到虚拟dom优化的</p></li></ul><p><strong>4. 在实际开发中要注意</strong></p><ul><li>尽量不要跨层级的修改dom</li><li>在开发组件时，保持稳定的 DOM 结构会有助于性能的提升</li><li>设置key可以让diff更高效</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+      <tag>源码</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>数据结构（七）树</title>
     <link href="/2021/08/28/2108281/"/>
     <url>/2021/08/28/2108281/</url>
@@ -292,9 +319,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>链表</tag>
+      
+      <tag>LeetCode</tag>
       
     </tags>
     
@@ -325,9 +352,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>链表</tag>
+      
+      <tag>LeetCode</tag>
       
       <tag>面试</tag>
       
@@ -393,9 +420,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>栈</tag>
-      
       <tag>LeetCode</tag>
+      
+      <tag>栈</tag>
       
     </tags>
     

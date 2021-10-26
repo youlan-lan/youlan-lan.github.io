@@ -18,7 +18,7 @@
   <meta name="author" content="优岚">
   <meta name="keywords" content="">
   
-  <title>前端与链表 - 优岚的博客</title>
+  <title>Vue源码解析之虚拟DOM和diff算法 - 优岚的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="前端与链表">
+            <span class="h2" id="subtitle" title="Vue源码解析之虚拟DOM和diff算法">
               
             </span>
 
@@ -190,8 +190,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-10 20:55" pubdate>
-        2021年7月10日 晚上
+      <time datetime="2021-10-27 00:53" pubdate>
+        2021年10月27日 凌晨
       </time>
     </span>
   
@@ -202,7 +202,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      295 字
+      972 字
     </span>
   
 
@@ -212,7 +212,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      11
        分钟
     </span>
   
@@ -250,27 +250,70 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">前端与链表</h1>
+            <h1 style="display: none">Vue源码解析之虚拟DOM和diff算法</h1>
             
             <div class="markdown-body">
-              <h2 id="1-原型链"><a href="#1-原型链" class="headerlink" title="1. 原型链"></a>1. 原型链</h2><p>原型链的本质是链表</p>
-<p>原型链上的节点是各种原型对象，比如：<code>Function.prototype</code>、<code>Object.prototype</code>……</p>
-<p>原型链通过<code>__proto__</code>属性连接各种原型对象</p>
-<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p><code>obj-&gt;Object.prototype-&gt;null</code></p>
-<p><code>func-&gt;Function.prototype-&gt;Object.prototype-&gt;null</code></p>
-<p><code>arr-&gt;Array.prototype-&gt;Object.prototype-&gt;null</code></p>
-<h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><ol>
-<li>如果A沿着原型链能找到B.prototype，那么A instanceof B为true</li>
-</ol>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-keyword">instanceof</span> = <span class="hljs-function">(<span class="hljs-params">A, B</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">let</span> p = A;<br>    <span class="hljs-keyword">while</span>(p) &#123;<br>        <span class="hljs-keyword">if</span>(p === B.prototype)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        p = p.__proto__;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+              <p><strong>举个小栗子：</strong></p>
+<p>我们要对一个屋子进行装修，装修图上只是对一部分空间进行改造，现有两种选择：①全拆了再按照装修图进行建造，②根据装修图，只对修改部分进行建造。</p>
+<p>关于真实dom和虚拟dom的区别大致和上述例子相同，真实dom是①每一次修改都需要拆了之前的再新建，而虚拟dom是②通过比对不同，通过appendchild等来操作dom节点。</p>
+<p>渲染真实dom的开销非常大，和页面性能优化中的重绘重排意义类似。当我们修改了页面中的某个数据，如果直接渲染到真实DOM中会引起整棵数的重绘重排, 如果我们使用虚拟dom，只让我们修改的数据映射到真实DOM, 做一个最少化重绘重排，这样的页面性能优化将大大提高。</p>
+<h2 id="虚拟dom"><a href="#虚拟dom" class="headerlink" title="虚拟dom"></a>虚拟dom</h2><p>将真实的DOM的数据抽取出来，以对象的形式模拟树形结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;div&gt;<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>你好<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br>&lt;/div&gt;<br><br><span class="hljs-comment">// VNode:</span><br><span class="hljs-keyword">const</span> Vnode = &#123;<br>    <span class="hljs-attr">tag</span>: <span class="hljs-string">&#x27;div&#x27;</span>,<br>    <span class="hljs-attr">children</span>: [<br>        &#123; <span class="hljs-attr">tag</span>: <span class="hljs-string">&#x27;p&#x27;</span>, <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;你好&#x27;</span> &#125;<br>    ]<br>&#125;;<br></code></pre></td></tr></table></figure>
 
-<ol start="2">
-<li>如果在A对象上没有找到x属性，那么会沿着原型链找x属性</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123;&#125;;<br><span class="hljs-built_in">Object</span>.prototype.x = <span class="hljs-string">&#x27;x&#x27;</span>;<br><span class="hljs-keyword">const</span> func = <span class="hljs-function">() =&gt;</span> &#123;&#125;;<br><span class="hljs-built_in">Function</span>.prototype.y = <span class="hljs-string">&#x27;y&#x27;</span>;<br><span class="hljs-built_in">console</span>.log(func.x);  <span class="hljs-comment">//x</span><br><span class="hljs-built_in">console</span>.log(func.y);  <span class="hljs-comment">//y</span><br><span class="hljs-built_in">console</span>.log(obj.x);   <span class="hljs-comment">//x</span><br><span class="hljs-built_in">console</span>.log(obj.y);   <span class="hljs-comment">//undefined</span><br></code></pre></td></tr></table></figure>
+<p><strong>1. h函数用来产生虚拟节点</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> hFun = h(<span class="hljs-string">&#x27;a&#x27;</span>, &#123; <span class="hljs-attr">props</span>:&#123; <span class="hljs-attr">href</span>: <span class="hljs-string">&#x27;http:baidu.com&#x27;</span> &#125; &#125;, <span class="hljs-string">&#x27;百度&#x27;</span>);<br><br><span class="hljs-comment">// 将得到这样的虚拟节点:</span><br>&#123;<span class="hljs-string">&#x27;sel&#x27;</span>: <span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;data&#x27;</span>: &#123; <span class="hljs-attr">props</span>: &#123; <span class="hljs-attr">href</span>: <span class="hljs-string">&#x27;http:baidu.com&#x27;</span> &#125; &#125;, <span class="hljs-string">&#x27;text&#x27;</span>: <span class="hljs-string">&#x27;百度&#x27;</span>&#125;;<br><br><span class="hljs-comment">// 得到的真正DOM节点</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span> = <span class="hljs-string">&quot;http:baidu.com&quot;</span> &gt;</span>百度<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 
-<h2 id="2-获取JSON的节点值"><a href="#2-获取JSON的节点值" class="headerlink" title="2. 获取JSON的节点值"></a>2. 获取JSON的节点值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> json = &#123;<br>    <span class="hljs-attr">a</span>: &#123; <span class="hljs-attr">b</span>: &#123; <span class="hljs-attr">c</span>: <span class="hljs-number">1</span> &#125; &#125;,<br>    <span class="hljs-attr">d</span>: &#123; <span class="hljs-attr">e</span>: &#123; <span class="hljs-attr">f</span>: &#123; <span class="hljs-attr">h</span>: <span class="hljs-number">2</span> &#125;, <span class="hljs-attr">g</span>: &#123; <span class="hljs-attr">i</span>: <span class="hljs-number">3</span> &#125; &#125; &#125;<br>&#125;<br><br><span class="hljs-comment">// 遍历json对象的路径</span><br><span class="hljs-keyword">const</span> path1 = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>];<br><span class="hljs-keyword">const</span> path2 = [<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;f&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>];<br><span class="hljs-keyword">const</span> path3 = [<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPoint</span>(<span class="hljs-params">path</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> p = json;<br>    path.forEach(<span class="hljs-function"><span class="hljs-params">k</span> =&gt;</span> &#123;<br>        p = p[k];<br>    &#125;);<br>    <span class="hljs-built_in">console</span>.log(p);<br>&#125;<br><br>getPoint(path1); <span class="hljs-comment">// 1</span><br>getPoint(path2); <span class="hljs-comment">// 2</span><br>getPoint(path3); <span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure>
-
+<p><strong>2. 虚拟节点的属性</strong></p>
+<p><code>childred</code>    <code>data</code>    <code>elm</code>    <code>key</code>    <code>sel</code>    <code>text</code></p>
+<p><strong>3. h函数使用patch函数进行”上树“</strong></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211026223413.png" srcset="/img/loading.gif" lazyload alt="image-20211026223413361"></p>
+<h2 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h2><p>简单的说：就是新旧虚拟dom 的比较，如果有差异就以新的为准，然后再插入的真实的dom中，重新渲染。</p>
+<p><strong>1.  在diff中，key起着非常重要的作用</strong></p>
+<ul>
+<li>无key：新的和旧的只会在进行头尾两端比较</li>
+<li>有key：除了比较头尾两端，还会根据key生成对象<code>oldKeyToIdx</code>中查找匹配的节点</li>
+</ul>
+<blockquote>
+<p>为节点设置key可以更高效的利用dom</p>
+</blockquote>
+<p>例如：</p>
+<p>在B和C之间加一个F，Diff算法默认执行起来是这样的：C更新成F，D更新成C，E更新成D，最后再插入E，这个效率emmm。。。。。。</p>
+<p>如果我们给每个节点设置好key，Diff算法就可以正确的识别此节点，找到正确的位置区插入新的节点。</p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211027004427.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<blockquote>
+<p>哦豁，for循环要设置key…..</p>
+</blockquote>
+<p><strong>2. 特点</strong></p>
+<ul>
+<li>只会做同级比较，不做跨级比较</li>
+<li>比较后几种情况<ul>
+<li><code>if (oldVnode === vnode)</code>，他们的引用一致，可以认为没有变化。</li>
+<li><code>if(oldVnode.text !== null &amp;&amp; vnode.text !== null &amp;&amp; oldVnode.text !== vnode.text)</code>，文本节点的比较，需要修改，则会调用<code>Node.textContent = vnode.text</code>。</li>
+<li><code>if( oldCh &amp;&amp; ch &amp;&amp; oldCh !== ch )</code>, 两个节点都有子节点，而且它们不一样，这样我们会调用<code>updateChildren</code>函数比较子节点，这是diff的核心</li>
+<li><code>else if (ch)</code>，只有新的节点有子节点，调用<code>createEle(vnode)</code>，<code>vnode.el</code>已经引用了老的dom节点，<code>createEle</code>函数会在老dom节点上添加子节点。</li>
+<li><code>else if (oldCh)</code>，新节点没有子节点，老节点有子节点，直接删除老节点。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. 总结</strong></p>
+<ul>
+<li><p>只有是同一个虚拟节点，才进行精细化比较，否则就是暴力删除旧的、插入新的</p>
+</li>
+<li><p>定义同一个虚拟节点：选择器系统 &amp;&amp; key相同</p>
+</li>
+<li><p><strong>key是节点的唯一标识</strong></p>
+</li>
+<li><p>只进行<strong>同层</strong>比较，不会进行跨层比较</p>
+</li>
+<li><p>diff不是万能的，肯定有情况是做不到虚拟dom优化的</p>
+</li>
+</ul>
+<p><strong>4. 在实际开发中要注意</strong></p>
+<ul>
+<li>尽量不要跨层级的修改dom</li>
+<li>在开发组件时，保持稳定的 DOM 结构会有助于性能的提升</li>
+<li>设置key可以让diff更高效</li>
+</ul>
 
             </div>
             <hr>
@@ -280,9 +323,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/js/">js</a>
+                      <a class="hover-with-bg" href="/categories/vue/">vue</a>
                     
                   </div>
                 
@@ -290,15 +331,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
-                    
-                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                      <a class="hover-with-bg" href="/tags/%E6%BA%90%E7%A0%81/">源码</a>
                     
                   </div>
                 
@@ -315,18 +350,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/10/2107101/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据结构（三）链表</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/09/2107092/">
-                        <span class="hidden-mobile">数据结构（二）队列</span>
+                      <a href="/2021/08/28/2108281/">
+                        <span class="hidden-mobile">数据结构（七）树</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
