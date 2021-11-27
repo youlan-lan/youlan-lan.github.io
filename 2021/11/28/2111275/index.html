@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/youlan_lan/md_image/raw/master/20210606182149.png">
+  <link rel="icon" href="https://gitee.com/youlan_lan/md_image/raw/master/20210606182149.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#447EA5">
+  <meta name="description" content="">
+  <meta name="author" content="优岚">
+  <meta name="keywords" content="">
+  
+  <title>学习数据结构与算法的心得总结 - 优岚的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Youlan's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="学习数据结构与算法的心得总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      优岚
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-28 00:21" pubdate>
+        2021年11月28日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">学习数据结构与算法的心得总结</h1>
+            
+            <div class="markdown-body">
+              <p>以下为2021年11月27日心得总结，基于前端。</p>
+<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p><strong>一个好的程序 = 数据结构 + 算法</strong></p>
+<p>对于大多数人来说，数据结构与算法很难，学习起来很枯燥</p>
+<blockquote>
+<p>从我自身的学习情况来看，前期也是觉得数据结构与算法“用不到、没必要学”，待慢慢接触之后，才开始感受到数据结构和算法的<strong>美妙</strong>之处！</p>
+</blockquote>
+<h4 id="常用的数据结构与算法："><a href="#常用的数据结构与算法：" class="headerlink" title="常用的数据结构与算法："></a>常用的数据结构与算法：</h4><ul>
+<li><p>数据结构：栈、队列、链表、集合、字典、树、图、堆</p>
+</li>
+<li><p>算法：链表/树/图的遍历、数组的排序和搜索……</p>
+</li>
+<li><p>算法设计思想：分而治之、动态规划、贪心、回溯……</p>
+</li>
+</ul>
+<h2 id="2-为什么学习"><a href="#2-为什么学习" class="headerlink" title="2. 为什么学习"></a>2. 为什么学习</h2><p>简单归纳为：</p>
+<ul>
+<li>学习解决问题的思想</li>
+<li>面试准备</li>
+</ul>
+<blockquote>
+<p>在学习数据结构前，对待问题：暴力出奇迹。题是写出来了，功能也实现了，但是可能嵌套了多层for，或是写了非常庸长的代码，性能极差，若是真正用于实现功能，时间复杂、空间复杂呈指数式增长，还挺恐怖的。。。</p>
+<p>待一步一步学习完数据结构之后，“原来这个问题可以这样解决！”</p>
+<p>当然，面试是离不开数据结构和算法的，这个就不多说了。</p>
+</blockquote>
+<p>↓ 贴一个图，当时做出来之后，大叹：神奇的数据结构</p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127235626.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127235521.png" srcset="/img/loading.gif" lazyload></p>
+<p>这一个题是困难级别，在未学习数据结构时，可能第一时间想到的是：用for去遍历，然后再根据题目去解决</p>
+<p>本题用到了<strong>字典</strong>和<strong>链表</strong>两个数据结构</p>
+<p><strong>解题思路：</strong></p>
+<ul>
+<li>先找出所有包含t的子串</li>
+<li>找出长度最小的那个子串，并返回</li>
+</ul>
+<p><strong>解题步骤：</strong></p>
+<ul>
+<li>用双指针维护应该滑动窗口</li>
+<li>移动右指针，找到包含t的子串，移动左指针，尽量减少包含t的子串的长度</li>
+<li>存入Map这一数据结构中</li>
+</ul>
+<h3 id="3-时间复杂度-vs-空间复杂度"><a href="#3-时间复杂度-vs-空间复杂度" class="headerlink" title="3. 时间复杂度 vs 空间复杂度"></a>3. 时间复杂度 vs 空间复杂度</h3><p>题完成了，数据结构和算法用上了</p>
+<p>不仅要实现功能，还要考虑时间复杂度和空间复杂度，进一步去优化自己的算法，使得这段程序的性能更加好、</p>
+<p>因此，做题时应该<strong>有意识去分析</strong>程序的时间复杂度和空间复杂度</p>
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211128000237.webp" srcset="/img/loading.gif" lazyload></p>
+<h4 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h4><p>一个程序的空间复杂度是指运行完一个程序所需内存的大小。利用程序的空间复杂度，可以对程序的运行所需要的内存多少有个预先估计。</p>
+<p>一个程序执行时除了需要存储空间和存储本身所使用的指令、常数、变量和输入数据外，还需要一些对数据进行操作的工作单元和存储一些为现实计算所需信息的辅助空间。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h2><p><strong>重点难点</strong></p>
+<ul>
+<li>数据结构：所有数据结构都很重要，和前端最相关的是链表和树</li>
+<li>算法：链表/树/图的遍历、数组的排序和搜索……</li>
+<li>设计思想：分而治之、动态规划较常考，贪心、回溯次之</li>
+</ul>
+<p><strong>心得</strong></p>
+<ul>
+<li>搞清楚数据结构与算法的<strong>特点</strong>和<strong>应用场景</strong></li>
+<li>用JS自己实现一遍</li>
+<li>学会分析时间复杂度 / 空间复杂度</li>
+<li>提炼前端和算法的结合点，用于实战中</li>
+</ul>
+<h2 id="5-如何学习"><a href="#5-如何学习" class="headerlink" title="5. 如何学习"></a>5. 如何学习</h2><h4 id="途径"><a href="#途径" class="headerlink" title="途径"></a>途径</h4><p>不限于书籍、视频、刷题</p>
+<ul>
+<li>书籍：《学习JavaScript数据结构与算法（第3版）》 </li>
+<li>视频：慕课网《JavaScript版数据结构与算法》</li>
+<li>刷题：LeetCode</li>
+</ul>
+<h4 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h4><ol>
+<li>系统学习数据结构与算法</li>
+<li>分类进行刷题</li>
+<li>定期回顾与总结</li>
+<li>选择经典题目：《剑指offer》</li>
+</ol>
+<h4 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h4><ul>
+<li>多刷题，300+</li>
+<li>多<strong>总结</strong>各种模板、套路</li>
+<li>多<strong>阅读源码</strong></li>
+<li>多实战，将数据结构与算法用于实际开发中</li>
+</ul>
+<blockquote>
+<p>源码里有非常多优秀的数据结构，例如Vue里面的虚拟DOM操作</p>
+</blockquote>
+<p>↓ 贴一段源码，使用的是树这一个数据结构。树这个数据结构在前端中使用得非常多，其次还有链表</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateChildren</span>(<span class="hljs-params">parentElm, oldCh, newCh</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> oldStartIdx = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> newStartIdx = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> oldEndIdx = oldCh.length - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> newEndIdx = oldCh.length - <span class="hljs-number">1</span>;<br>    <br>    <span class="hljs-keyword">let</span> oldStartVnode = oldCh[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">let</span> oldEndVnode = oldCh[oldEndIdx];<br>    <span class="hljs-keyword">let</span> newStartVnode = newCh[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">let</span> newEndVnode = newCh[newEndIdx];<br>    <br>    <span class="hljs-keyword">while</span>(oldStartIdx &lt;= oldEndIdx &amp;&amp; newStartIdx &lt;= newEndIdx)&#123;<br>        <span class="hljs-comment">// 先略过已经加了undefined标记的东西</span><br>        <span class="hljs-keyword">if</span>(oldStartVnode == <span class="hljs-literal">null</span> || oldCh[oldStartIdx] == <span class="hljs-literal">undefined</span>) &#123;<br>            oldStartVnode = old[++oldStartIdx]<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(oldEndVnode == <span class="hljs-literal">null</span> || oldCh[oldEndIdx] == <span class="hljs-literal">undefined</span>) &#123;<br>            oldEndVnode = old[--oldEndIdx]<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(newStartVnode == <span class="hljs-literal">null</span> || newCh[newStartIdx] == <span class="hljs-literal">undefined</span>) &#123;<br>            newStartVnode = old[++oldStartIdx]<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(newEndVnode == <span class="hljs-literal">null</span> || newCh[newEndIdx] == <span class="hljs-literal">undefined</span>) &#123;<br>            newEndVnode = old[--newEndIdx]<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(checkSameVnode(oldStartVnode, newStartVnode))&#123;<br>            <span class="hljs-comment">// ①新前和旧前</span><br>            patchVnode(oldStartVnode,newStartVnode);<br>            oldStartVnode = oldCh[++oldStartIdx];   <span class="hljs-comment">//先自增后使用</span><br>            newStartVnode = newCh[++newStartIdx];<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(checkSameVnode(oldStartVnode, newStartVnode))&#123;<br>            <span class="hljs-comment">// ②新后和旧后</span><br>            patchVnode(oldStartVnode, newStartVnode);<br>            oldEndVnode = oldCh[--oldEndIdx];<br>            newEndVnode = newCh[--newEndIdx];<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(checkSameVnode(oldStartVnode, newEndVnode))&#123;<br>            <span class="hljs-comment">// ③新后和旧前</span><br>            patchVnode(oldStartVnode, newEndVnode);<br>            <span class="hljs-comment">// 此时要移动节点，移动新前指向的这个节点到老节点的旧后的后面</span><br>            parentElm.insertBefore(oldStartVnode.elm, oldEndVnode.elm.nextSibling) <span class="hljs-comment">//下一个兄弟节点前</span><br>            oldStartVnode = oldCh[++oldStartIdx];<br>            newEndVnode = newCh[--newEndIdx];<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(checkSameVnode(oldEndVnode, newStartVnode))&#123;<br>            <span class="hljs-comment">// ④新前和旧后</span><br>            patchVnode(oldEndVnode, newStartVnode);<br>            <span class="hljs-comment">// 此时要移动节点，移动新前指向的这个节点到老节点的旧后的后面</span><br>            parentElm.insertBefore(oldEndVnode.elm, oldStartVnode.elm) <span class="hljs-comment">//下一个兄弟节点前</span><br>            oldEndVnode = oldCh[++oldEndIdx];<br>            newStartVnode = newCh[--newStartIdx];<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 全都没有命中</span><br>            <span class="hljs-comment">// 制作key的map</span><br>            <span class="hljs-keyword">if</span>(!keyMap) &#123;<br>                keyMap = &#123;&#125;;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = oldStartIdx; i &lt;= oldEndIdx; i++) &#123;<br>                    <span class="hljs-keyword">const</span> key = oldCh[i].key;<br>                    <span class="hljs-keyword">if</span> (key != <span class="hljs-literal">undefined</span>) &#123;<br>                        keyMap[key] = i;<br>                    &#125;<br>                &#125;<br>            &#125;<br>            <span class="hljs-comment">// 寻找当前这项newStartIdx在keyMap中的映射的位置序号</span><br>            <span class="hljs-keyword">const</span> idxInOld = keyMap[newStartVnode.key];<br>            <span class="hljs-keyword">if</span>(idxInOld == <span class="hljs-literal">undefined</span>) &#123;<br>                <span class="hljs-comment">// 判断，如果idxInOld是undefined，表示是全新的项</span><br>                <span class="hljs-comment">// 被加入的项（极速newStartVnode这项），现在还不是真正的DOM节点</span><br>                parentElm.insertBefore(ceateElem(newSrartVnode), oldStartVnode.elm);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 如果不是undefined，不是全新的项，要移动</span><br>                <span class="hljs-keyword">const</span> elmToMove = oldCh[idxInOld];<br>                patchVnode(elmToMove, newStartVnode);<br>                <span class="hljs-comment">// 处理完后，设置为undefined</span><br>                oldCh[idxInOld] = <span class="hljs-literal">undefined</span>;<br>                parentElm.insertBefore(elmToMove.elm, oldStartVnode.elm);<br>            &#125;<br>            <span class="hljs-comment">// 指针下移，只移动新的头</span><br>            newStartVnode = newCh[++newStartIdx]<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-comment">//继续看看有没有剩余的</span><br>    <span class="hljs-comment">// 当start还是比old小,new还有剩余节点没有处理，要加项</span><br>    <span class="hljs-keyword">if</span> (newStartIdx &lt;= oldEndIdx) &#123;<br>        <span class="hljs-comment">// 遍历新的newChrome，添加到老的没有处理的之前</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = newStartIdx; i &lt;= newEndIdx; i++) &#123;<br>            <span class="hljs-comment">// 如果是null，自动排到队尾</span><br>            parentElm.insertBefore(createElement(newCh[i]), oldCh[oldStartIdx].elm);<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (oldStartIdx &lt;= oldEndIdx) &#123;<br>        <span class="hljs-comment">// old还有剩余节点没有处理</span><br>        <span class="hljs-comment">// 批量删除oldStart和oldEnd指针之间的项，要减项</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = oldStartIdx; i &lt;= oldEndIdx; i++) &#123;<br>            <span class="hljs-keyword">if</span> (oldCh[i]) &#123;<br>                parentElm.removeChild(oldCh[i].elm);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p>参考文章：</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%88%86%E4%BA%AB/">分享</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/think/">think</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/27/2111274/">
+                        <span class="hidden-mobile">算法（五）回溯算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                <!-- <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'youlan-lan.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript> -->
+
+
+<script src="https://utteranc.es/client.js"
+        repo="youlan-lan/youlan-lan.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<noscript>Please enable JavaScript to view the comments</noscript>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div style="color:#0983CE"> 优岚的博客 | 记录过程</div> <div style="background-image: linear-gradient(to right, red, orange, yellow, green, yellow, orange, red, orange, yellow, green, yellow, orange, red);-webkit-background-clip: text;animation: move 5s infinite;color: transparent;"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

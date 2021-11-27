@@ -4,6 +4,134 @@
   
   
   <entry>
+    <title>学习数据结构与算法的心得总结</title>
+    <link href="/2021/11/28/2111275/"/>
+    <url>/2021/11/28/2111275/</url>
+    
+    <content type="html"><![CDATA[<p>以下为2021年11月27日心得总结，基于前端。</p><h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p><strong>一个好的程序 = 数据结构 + 算法</strong></p><p>对于大多数人来说，数据结构与算法很难，学习起来很枯燥</p><blockquote><p>从我自身的学习情况来看，前期也是觉得数据结构与算法“用不到、没必要学”，待慢慢接触之后，才开始感受到数据结构和算法的<strong>美妙</strong>之处！</p></blockquote><h4 id="常用的数据结构与算法："><a href="#常用的数据结构与算法：" class="headerlink" title="常用的数据结构与算法："></a>常用的数据结构与算法：</h4><ul><li><p>数据结构：栈、队列、链表、集合、字典、树、图、堆</p></li><li><p>算法：链表/树/图的遍历、数组的排序和搜索……</p></li><li><p>算法设计思想：分而治之、动态规划、贪心、回溯……</p></li></ul><h2 id="2-为什么学习"><a href="#2-为什么学习" class="headerlink" title="2. 为什么学习"></a>2. 为什么学习</h2><p>简单归纳为：</p><ul><li>学习解决问题的思想</li><li>面试准备</li></ul><blockquote><p>在学习数据结构前，对待问题：暴力出奇迹。题是写出来了，功能也实现了，但是可能嵌套了多层for，或是写了非常庸长的代码，性能极差，若是真正用于实现功能，时间复杂、空间复杂呈指数式增长，还挺恐怖的。。。</p><p>待一步一步学习完数据结构之后，“原来这个问题可以这样解决！”</p><p>当然，面试是离不开数据结构和算法的，这个就不多说了。</p></blockquote><p>↓ 贴一个图，当时做出来之后，大叹：神奇的数据结构</p><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127235626.png"></p><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127235521.png"></p><p>这一个题是困难级别，在未学习数据结构时，可能第一时间想到的是：用for去遍历，然后再根据题目去解决</p><p>本题用到了<strong>字典</strong>和<strong>链表</strong>两个数据结构</p><p><strong>解题思路：</strong></p><ul><li>先找出所有包含t的子串</li><li>找出长度最小的那个子串，并返回</li></ul><p><strong>解题步骤：</strong></p><ul><li>用双指针维护应该滑动窗口</li><li>移动右指针，找到包含t的子串，移动左指针，尽量减少包含t的子串的长度</li><li>存入Map这一数据结构中</li></ul><h3 id="3-时间复杂度-vs-空间复杂度"><a href="#3-时间复杂度-vs-空间复杂度" class="headerlink" title="3. 时间复杂度 vs 空间复杂度"></a>3. 时间复杂度 vs 空间复杂度</h3><p>题完成了，数据结构和算法用上了</p><p>不仅要实现功能，还要考虑时间复杂度和空间复杂度，进一步去优化自己的算法，使得这段程序的性能更加好、</p><p>因此，做题时应该<strong>有意识去分析</strong>程序的时间复杂度和空间复杂度</p><h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211128000237.webp"></p><h4 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h4><p>一个程序的空间复杂度是指运行完一个程序所需内存的大小。利用程序的空间复杂度，可以对程序的运行所需要的内存多少有个预先估计。</p><p>一个程序执行时除了需要存储空间和存储本身所使用的指令、常数、变量和输入数据外，还需要一些对数据进行操作的工作单元和存储一些为现实计算所需信息的辅助空间。</p><h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h2><p><strong>重点难点</strong></p><ul><li>数据结构：所有数据结构都很重要，和前端最相关的是链表和树</li><li>算法：链表/树/图的遍历、数组的排序和搜索……</li><li>设计思想：分而治之、动态规划较常考，贪心、回溯次之</li></ul><p><strong>心得</strong></p><ul><li>搞清楚数据结构与算法的<strong>特点</strong>和<strong>应用场景</strong></li><li>用JS自己实现一遍</li><li>学会分析时间复杂度 / 空间复杂度</li><li>提炼前端和算法的结合点，用于实战中</li></ul><h2 id="5-如何学习"><a href="#5-如何学习" class="headerlink" title="5. 如何学习"></a>5. 如何学习</h2><h4 id="途径"><a href="#途径" class="headerlink" title="途径"></a>途径</h4><p>不限于书籍、视频、刷题</p><ul><li>书籍：《学习JavaScript数据结构与算法（第3版）》 </li><li>视频：慕课网《JavaScript版数据结构与算法》</li><li>刷题：LeetCode</li></ul><h4 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h4><ol><li>系统学习数据结构与算法</li><li>分类进行刷题</li><li>定期回顾与总结</li><li>选择经典题目：《剑指offer》</li></ol><h4 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h4><ul><li>多刷题，300+</li><li>多<strong>总结</strong>各种模板、套路</li><li>多<strong>阅读源码</strong></li><li>多实战，将数据结构与算法用于实际开发中</li></ul><blockquote><p>源码里有非常多优秀的数据结构，例如Vue里面的虚拟DOM操作</p></blockquote><p>↓ 贴一段源码，使用的是树这一个数据结构。树这个数据结构在前端中使用得非常多，其次还有链表</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateChildren</span>(<span class="hljs-params">parentElm, oldCh, newCh</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> oldStartIdx = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> newStartIdx = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> oldEndIdx = oldCh.length - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> newEndIdx = oldCh.length - <span class="hljs-number">1</span>;<br>    <br>    <span class="hljs-keyword">let</span> oldStartVnode = oldCh[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">let</span> oldEndVnode = oldCh[oldEndIdx];<br>    <span class="hljs-keyword">let</span> newStartVnode = newCh[<span class="hljs-number">0</span>];<br>    <span class="hljs-keyword">let</span> newEndVnode = newCh[newEndIdx];<br>    <br>    <span class="hljs-keyword">while</span>(oldStartIdx &lt;= oldEndIdx &amp;&amp; newStartIdx &lt;= newEndIdx)&#123;<br>        <span class="hljs-comment">// 先略过已经加了undefined标记的东西</span><br>        <span class="hljs-keyword">if</span>(oldStartVnode == <span class="hljs-literal">null</span> || oldCh[oldStartIdx] == <span class="hljs-literal">undefined</span>) &#123;<br>            oldStartVnode = old[++oldStartIdx]<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(oldEndVnode == <span class="hljs-literal">null</span> || oldCh[oldEndIdx] == <span class="hljs-literal">undefined</span>) &#123;<br>            oldEndVnode = old[--oldEndIdx]<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(newStartVnode == <span class="hljs-literal">null</span> || newCh[newStartIdx] == <span class="hljs-literal">undefined</span>) &#123;<br>            newStartVnode = old[++oldStartIdx]<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(newEndVnode == <span class="hljs-literal">null</span> || newCh[newEndIdx] == <span class="hljs-literal">undefined</span>) &#123;<br>            newEndVnode = old[--newEndIdx]<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(checkSameVnode(oldStartVnode, newStartVnode))&#123;<br>            <span class="hljs-comment">// ①新前和旧前</span><br>            patchVnode(oldStartVnode,newStartVnode);<br>            oldStartVnode = oldCh[++oldStartIdx];   <span class="hljs-comment">//先自增后使用</span><br>            newStartVnode = newCh[++newStartIdx];<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(checkSameVnode(oldStartVnode, newStartVnode))&#123;<br>            <span class="hljs-comment">// ②新后和旧后</span><br>            patchVnode(oldStartVnode, newStartVnode);<br>            oldEndVnode = oldCh[--oldEndIdx];<br>            newEndVnode = newCh[--newEndIdx];<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(checkSameVnode(oldStartVnode, newEndVnode))&#123;<br>            <span class="hljs-comment">// ③新后和旧前</span><br>            patchVnode(oldStartVnode, newEndVnode);<br>            <span class="hljs-comment">// 此时要移动节点，移动新前指向的这个节点到老节点的旧后的后面</span><br>            parentElm.insertBefore(oldStartVnode.elm, oldEndVnode.elm.nextSibling) <span class="hljs-comment">//下一个兄弟节点前</span><br>            oldStartVnode = oldCh[++oldStartIdx];<br>            newEndVnode = newCh[--newEndIdx];<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(checkSameVnode(oldEndVnode, newStartVnode))&#123;<br>            <span class="hljs-comment">// ④新前和旧后</span><br>            patchVnode(oldEndVnode, newStartVnode);<br>            <span class="hljs-comment">// 此时要移动节点，移动新前指向的这个节点到老节点的旧后的后面</span><br>            parentElm.insertBefore(oldEndVnode.elm, oldStartVnode.elm) <span class="hljs-comment">//下一个兄弟节点前</span><br>            oldEndVnode = oldCh[++oldEndIdx];<br>            newStartVnode = newCh[--newStartIdx];<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 全都没有命中</span><br>            <span class="hljs-comment">// 制作key的map</span><br>            <span class="hljs-keyword">if</span>(!keyMap) &#123;<br>                keyMap = &#123;&#125;;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = oldStartIdx; i &lt;= oldEndIdx; i++) &#123;<br>                    <span class="hljs-keyword">const</span> key = oldCh[i].key;<br>                    <span class="hljs-keyword">if</span> (key != <span class="hljs-literal">undefined</span>) &#123;<br>                        keyMap[key] = i;<br>                    &#125;<br>                &#125;<br>            &#125;<br>            <span class="hljs-comment">// 寻找当前这项newStartIdx在keyMap中的映射的位置序号</span><br>            <span class="hljs-keyword">const</span> idxInOld = keyMap[newStartVnode.key];<br>            <span class="hljs-keyword">if</span>(idxInOld == <span class="hljs-literal">undefined</span>) &#123;<br>                <span class="hljs-comment">// 判断，如果idxInOld是undefined，表示是全新的项</span><br>                <span class="hljs-comment">// 被加入的项（极速newStartVnode这项），现在还不是真正的DOM节点</span><br>                parentElm.insertBefore(ceateElem(newSrartVnode), oldStartVnode.elm);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 如果不是undefined，不是全新的项，要移动</span><br>                <span class="hljs-keyword">const</span> elmToMove = oldCh[idxInOld];<br>                patchVnode(elmToMove, newStartVnode);<br>                <span class="hljs-comment">// 处理完后，设置为undefined</span><br>                oldCh[idxInOld] = <span class="hljs-literal">undefined</span>;<br>                parentElm.insertBefore(elmToMove.elm, oldStartVnode.elm);<br>            &#125;<br>            <span class="hljs-comment">// 指针下移，只移动新的头</span><br>            newStartVnode = newCh[++newStartIdx]<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-comment">//继续看看有没有剩余的</span><br>    <span class="hljs-comment">// 当start还是比old小,new还有剩余节点没有处理，要加项</span><br>    <span class="hljs-keyword">if</span> (newStartIdx &lt;= oldEndIdx) &#123;<br>        <span class="hljs-comment">// 遍历新的newChrome，添加到老的没有处理的之前</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = newStartIdx; i &lt;= newEndIdx; i++) &#123;<br>            <span class="hljs-comment">// 如果是null，自动排到队尾</span><br>            parentElm.insertBefore(createElement(newCh[i]), oldCh[oldStartIdx].elm);<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (oldStartIdx &lt;= oldEndIdx) &#123;<br>        <span class="hljs-comment">// old还有剩余节点没有处理</span><br>        <span class="hljs-comment">// 批量删除oldStart和oldEnd指针之间的项，要减项</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = oldStartIdx; i &lt;= oldEndIdx; i++) &#123;<br>            <span class="hljs-keyword">if</span> (oldCh[i]) &#123;<br>                parentElm.removeChild(oldCh[i].elm);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>参考文章：</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数据结构</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>think</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>算法（五）回溯算法</title>
+    <link href="/2021/11/27/2111274/"/>
+    <url>/2021/11/27/2111274/</url>
+    
+    <content type="html"><![CDATA[<h1 id="算法（五）回溯算法"><a href="#算法（五）回溯算法" class="headerlink" title="算法（五）回溯算法"></a>算法（五）回溯算法</h1><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><ul><li>回溯算法是算法设计中的一种方法</li><li>回溯算法是一种<strong>渐进式</strong>寻找并构建问题解决方式的策略</li><li>回溯算法会先从一个可能的动作开始解决问题，如果不行，就回溯并选择另一个动作，直到将问题解决</li></ul><blockquote><p>回溯算法解决适用条件：</p><ul><li>有很多路</li><li>这些路中，有的是死路</li><li>通常需要递归来模拟所有的路</li></ul></blockquote><h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a>46. 全排列</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127213149.png"></p><p><strong>解题思路：</strong></p><ul><li>要求：<ul><li>所有排列情况</li><li>没有重复元素</li></ul></li><li>有出路、有死路</li><li>考虑使用回溯算法</li></ul><p><strong>解题步骤：</strong></p><ul><li>用递归模拟出所有情况</li><li>遇到包含重复元素的情况，就回溯</li><li>收集所有达到递归终点的情况，并返回</li></ul><h4 id="78-子集"><a href="#78-子集" class="headerlink" title="78. 子集"></a>78. 子集</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127214612.png"></p><p><strong>解题思路：</strong></p><ul><li>要求：<ul><li>所有子集</li><li>没有重复元素</li></ul></li><li>有出路、有死路</li><li>考虑使用回溯算法</li></ul><p><strong>解题步骤：</strong></p><ul><li>用递归模拟出所有情况</li><li>保证接的数字都是后面的数字</li><li>收集所有到达递归终点的情况，并返回</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> <span class="hljs-keyword">var</span> subsets = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> res = [];<br>    <span class="hljs-keyword">const</span> backtrack = <span class="hljs-function">(<span class="hljs-params">path, length, start</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (path.length === length) &#123;<br>            res.push(path);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start; i &lt; nums.length; i++) &#123;<br>            backtrack(path.concat(nums[i]), length, i + <span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= nums.length; i++) &#123;<br>        backtrack([], i, <span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure><ul><li>时间复杂度：$O(n*2^N)$</li><li>空间复杂度：$O(N)$</li></ul><p>其他：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> subsets = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> res = []<br>    <span class="hljs-keyword">let</span> path = []<br>    <span class="hljs-keyword">const</span> backtracking = <span class="hljs-function">(<span class="hljs-params">start</span>) =&gt;</span> &#123;<br>        <span class="hljs-comment">// 可以不需要加终止条件，因为start &gt;= nums.length，本层for循环本来也结束了</span><br>        res.push(path.slice())<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start; i &lt; nums.length; i++) &#123;<br>            path.push(nums[i])<br>            backtracking(i + <span class="hljs-number">1</span>)<br>            path.pop() <span class="hljs-comment">//回溯</span><br>        &#125;<br>    &#125;<br>    backtracking(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> res<br>&#125;;<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127222538.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>js</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>js</tag>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>回溯算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>算法（四）贪心算法</title>
+    <link href="/2021/11/27/2111273/"/>
+    <url>/2021/11/27/2111273/</url>
+    
+    <content type="html"><![CDATA[<h1 id="算法（四）贪心算法"><a href="#算法（四）贪心算法" class="headerlink" title="算法（四）贪心算法"></a>算法（四）贪心算法</h1><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><ul><li>贪心算法是算法设计的一种方法</li><li>全盘通过每个阶段的<strong>局部最优</strong>选择，从而达到全局的最优</li><li>结果<strong>并不一定是最优</strong></li></ul><h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="455-分发饼干"><a href="#455-分发饼干" class="headerlink" title="455. 分发饼干"></a>455. 分发饼干</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127205608.png"></p><p><strong>解题思路：</strong></p><ul><li>局部最优：既能满足孩子，还消耗最少</li><li>先将“较小的饼干”分给“胃口最小”的孩子</li></ul><p><strong>解题步骤：</strong></p><ul><li>对饼干数组和胃口数组升序排序</li><li>遍历饼干数组，找到能满足第一个孩子的饼干</li><li>然后继续遍历饼干数组，找到满足第二、三、……、n个孩子的饼干</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> findContentChildren = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">g, s</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> sortFunc = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">return</span> a - b;<br>    &#125;<br>    g.sort(sortFunc);<br>    s.sort(sortFunc);<br>    <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;<br>    s.forEach(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (n &gt;= g[i]) &#123;<br>            i++<br>        &#125;<br>    &#125;)<br>    <span class="hljs-keyword">return</span> i;<br>&#125;;<br></code></pre></td></tr></table></figure><h4 id="122-买卖股票的最佳时机（二）"><a href="#122-买卖股票的最佳时机（二）" class="headerlink" title="122. 买卖股票的最佳时机（二）"></a>122. 买卖股票的最佳时机（二）</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127211510.png"></p><p><strong>解题思路：</strong></p><ul><li>前提：上帝视角，知道未来的价格</li><li>局部最优：见好就收，见差就不动，不做任何长远打算</li></ul><p><strong>解题步骤：</strong></p><ul><li>新建一个变量，用来统计总利润</li><li>遍历价格数组，如果当前价格比昨天高，就在昨天买，今天卖，否则就不交易</li><li>遍历结束后，返回所有利润之和</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> maxProfit = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">prices</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> profit = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; prices.length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (prices[i] &gt; prices[i - <span class="hljs-number">1</span>]) &#123;<br>            profit += prices[i] - prices[i - <span class="hljs-number">1</span>];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> profit;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>js</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>js</tag>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>贪心算法</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>算法（三）动态规划</title>
+    <link href="/2021/11/27/2111272/"/>
+    <url>/2021/11/27/2111272/</url>
+    
+    <content type="html"><![CDATA[<h1 id="算法（三）动态规划"><a href="#算法（三）动态规划" class="headerlink" title="算法（三）动态规划"></a>算法（三）动态规划</h1><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><ul><li>动态规划是算法设计中的一种方法</li><li>将一个问题分解为相互重叠的子问题，通过反复求解子问题，来解决原来的问题，来解决原来的问题</li></ul><p><strong>斐波那契数列</strong><br>$$<br>F=\left{\begin{array}{c}0, \mathrm{n}=0 \ 1, \mathrm{n}=1 \ \text { Fibonacci }[n-1]+\text { Fibonacci }[n-2], n&gt;1\end{array}\right.<br>$$</p><ul><li>定义子问题：$F(n)=F(n-1)+F(n-2)$</li><li>反复执行：从2循环到n，执行上述公式</li></ul><blockquote><p>动态规划 VS 分而治之</p><p>相同点：都是将问题拆为多个小问题</p><p>不同点：动态规划的小问题是相互有联系的，而分而治之是相互独立的</p></blockquote><h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70. 爬楼梯"></a>70. 爬楼梯</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127173017.png"></p><p><strong>解题思路：</strong></p><ul><li>排到第n阶可以在第n-1阶爬1个台阶，或者在第n-2阶爬2个台阶</li><li>$F(n)=F(n-1)+F(n-2)$</li><li>使用动态规划</li></ul><p><strong>解题步骤：</strong></p><ul><li>定义子问题：$F(n)=F(n-1)+F(n-2)$</li><li>反复执行：从2循环到n，执行上述公式</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> climbStairs = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">const</span> dp = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;<br>        dp[i] = dp[i - <span class="hljs-number">1</span>] + dp[i - <span class="hljs-number">2</span>]<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[n]<br>&#125;;<br></code></pre></td></tr></table></figure><p>优化：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> climbStairs = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> dp0 = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> dp1 = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;<br>        <span class="hljs-keyword">const</span> temp = dp0;<br>        dp0 = dp1;<br>        dp1 = dp1 + temp;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp1;<br>&#125;;<br></code></pre></td></tr></table></figure><h4 id="198-打家劫舍"><a href="#198-打家劫舍" class="headerlink" title="198. 打家劫舍"></a>198. 打家劫舍</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127174914.png"></p><p><strong>解题思路：</strong><br>$$<br>\left{\begin{array}{ll}d p[0]=n u m s[0] &amp; \text { 只有一间房屋，则偷窃该房屋 } \ d p[1]=\max (\text { nums }[0], n u m s[1]) &amp; \text { 只有两间房屋，选择其中金额较高的房屋进行偷窃 }\end{array}\right.<br>$$</p><ul><li>f(k) = 从前k个房屋中能偷窃到的最大数额</li><li>Ak = 第k个房屋的钱数</li><li>$f(k) = max(f(k - 2) + Ak, f(k - 1))$</li><li>使用动态规划</li></ul><p><strong>解题步骤：</strong></p><ul><li>定义子问题：$f(k) = max(f(k - 2) + Ak, f(k - 1))$</li><li>反复执行：从2循环到n，执行上述公式</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> rob = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (!nums.length) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> dp0 = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> dp1 = nums[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= nums.length; i++) &#123;<br>        <span class="hljs-keyword">const</span> dp2 = <span class="hljs-built_in">Math</span>.max(dp0 + nums[i - <span class="hljs-number">1</span>], dp1);<br>        dp0 = dp1;<br>        dp1 = dp2;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp1<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>js</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>js</tag>
+      
+      <tag>LeetCode</tag>
+      
+      <tag>算法</tag>
+      
+      <tag>动态规划</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>算法（二）分而治之</title>
     <link href="/2021/11/27/2111271/"/>
     <url>/2021/11/27/2111271/</url>
@@ -546,9 +674,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>队列</tag>
+      
+      <tag>LeetCode</tag>
       
     </tags>
     
@@ -579,9 +707,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>栈</tag>
-      
       <tag>LeetCode</tag>
+      
+      <tag>栈</tag>
       
     </tags>
     
