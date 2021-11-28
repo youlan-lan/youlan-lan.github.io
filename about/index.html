@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -198,13 +198,16 @@
                 
 
 <article class="page-content">
-  <img src="https://gitee.com/youlan_lan/md_image/raw/master/20210606182149.png" srcset="/img/loading.gif" lazyload style="padding:5% 30%">
+  <p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210606182149.png" srcset="/img/loading.gif" lazyload style="padding:5% 30%"></p>
 <p style="text-align: center;">平平淡淡才是真，一名普普通通无成就的在校学生</p>
 <p style="text-align: center;">哦豁，菜鸡正在努力学习了……</p>
 </br>
 
-<h4 id="事情是这样的"><a href="#事情是这样的" class="headerlink" title="事情是这样的"></a><p style="color:#0983CE">事情是这样的</p></h4><p>之前用<code>Butterfly</code>主题搭建的博客本地项目丢了，并且当时没有进行commit，只好重新搭建一个新的了。</p>
-<h6 id="写于2021年6月6日"><a href="#写于2021年6月6日" class="headerlink" title="写于2021年6月6日"></a><p style="float:right;font-weight:normal">写于2021年6月6日</p></h6>
+#### <p style="color:#0983CE">事情是这样的</p>
+之前用`Butterfly`主题搭建的博客本地项目丢了，并且当时没有进行commit，只好重新搭建一个新的了。
+
+
+###### <p style="float:right;font-weight:normal">写于2021年6月6日</p>
 
   
 </article>
@@ -367,5 +370,21 @@
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

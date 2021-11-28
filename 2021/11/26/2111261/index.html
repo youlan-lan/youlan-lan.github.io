@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -279,15 +279,13 @@
 </blockquote>
 <p><img src="https://gitee.com/youlan_lan/md_image/raw/master/giphy.gif" srcset="/img/loading.gif" lazyload alt="冒泡排序"></p>
 <ul>
-<li><p>比较所有相邻元素，如果第一个比第二个大，则交换他们</p>
-</li>
+<li>比较所有相邻元素，如果第一个比第二个大，则交换他们</li>
 <li><p>一轮下来，可以保证最后一个数是最大的</p>
 </li>
 <li><p>执行n-1论，就可以完成排序</p>
 </li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// this指代的是array</span><br><span class="hljs-built_in">Array</span>.prototype.bubbleSort = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i =<span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length - <span class="hljs-number">1</span>; i++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-built_in">this</span>.length - <span class="hljs-number">1</span>; j++) &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>[j] &gt; <span class="hljs-built_in">this</span>[j + <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-keyword">const</span> temp = <span class="hljs-built_in">this</span>[j];<br>                <span class="hljs-built_in">this</span>[j] = <span class="hljs-built_in">this</span>[j+<span class="hljs-number">1</span>];<br>                <span class="hljs-built_in">this</span>[j+<span class="hljs-number">1</span>] = temp;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>];<br>arr.bubbleSort()<br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>两个嵌套循环</p>
 <p>时间复杂度：O(n^2)</p>
@@ -320,7 +318,6 @@
 <li>以此类推，执行n-1轮</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Array</span>.prototype.selectionSort = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length - <span class="hljs-number">1</span>; i++) &#123;<br>       <span class="hljs-keyword">let</span> indexMin = i;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = i; j &lt; <span class="hljs-built_in">this</span>.length; j++) &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>[j] &lt; <span class="hljs-built_in">this</span>[indexMin]) &#123;<br>                indexMin = j;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 当自身是最小值时，不需要交换</span><br>        <span class="hljs-keyword">if</span> (indexMin !== i) &#123;<br>            <span class="hljs-keyword">const</span> temp = <span class="hljs-built_in">this</span>[i];<br>            <span class="hljs-built_in">this</span>[i] = <span class="hljs-built_in">this</span>[indexMin];<br>            <span class="hljs-built_in">this</span>[indexMin] = temp; <br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>];<br>arr.selectionSort()<br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>两个嵌套循环</p>
 <p>时间复杂度：O(n^2)</p>
@@ -344,7 +341,6 @@
 <li>依次类推进行到最后一个数</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Array</span>.prototype.insertionSort = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;<br>        <span class="hljs-keyword">const</span> temp = <span class="hljs-built_in">this</span>[i];<br>        <span class="hljs-keyword">let</span> j = i;<br>        <span class="hljs-keyword">while</span>(j) &#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>[j-<span class="hljs-number">1</span>] &gt; temp) &#123;<br>                <span class="hljs-built_in">this</span>[j] = <span class="hljs-built_in">this</span>[j-<span class="hljs-number">1</span>];<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            j--;<br>        &#125;<br>        <span class="hljs-built_in">this</span>[j] = temp;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>];<br>arr.insertionSort()<br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>两个嵌套循环</p>
 <p>时间复杂度：O(n^2)</p>
@@ -363,7 +359,6 @@
 </li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Array</span>.prototype.mergeSort = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-comment">// 使用一个递归</span><br>    <span class="hljs-keyword">const</span> rec = <span class="hljs-function">(<span class="hljs-params">arr</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (arr.length === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> arr;<br>        <span class="hljs-keyword">const</span> mid = <span class="hljs-built_in">Math</span>.floor(ar.length / <span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">const</span> left = arr.slice(<span class="hljs-number">0</span>, mid);<br>        <span class="hljs-keyword">const</span> right = arr.slice(mid, arr.length);<br>        <span class="hljs-keyword">const</span> orderLeft = rec(left);<br>        <span class="hljs-keyword">const</span> orderRight = rec(right);<br>        <span class="hljs-keyword">const</span> res = [];<br>        <span class="hljs-keyword">while</span> (orderLeft.length || orderRight.length) &#123;<br>            <span class="hljs-keyword">if</span> (orderLeft.length &amp;&amp; orderRight.length) &#123;<br>                <span class="hljs-comment">// 比较左右两边头部元素的大小，谁小先推谁</span><br>                res.push(orderLeft[<span class="hljs-number">0</span>] &lt; orderRight[<span class="hljs-number">0</span>] ? orderLeft.shift() : orderRight.shift())<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (orderLeft.length) &#123;<br>                <span class="hljs-comment">// 当只剩下左边有元素的话，将左边的元素依次推入</span><br>                res.push(orderLeft.shift())<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (orderRight.length) &#123;<br>                <span class="hljs-comment">// 右边同理</span><br>                res.push(orderRight.shift())<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <span class="hljs-keyword">const</span> res = rec(<span class="hljs-built_in">this</span>);<br>    <span class="hljs-comment">// 将res拷贝到arr数组里</span><br>    res.forEach(n, i) =&gt; &#123;<br>        <span class="hljs-built_in">this</span>[i] = res;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>];<br>arr.mergeSort()<br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>分的时间复杂度是O(logN)</p>
 <p>合的时间复杂度是O(n)</p>
@@ -389,10 +384,9 @@
 </ul>
 <blockquote>
 <p>第一轮之后的效果：</p>
-<img src="https://gitee.com/youlan_lan/md_image/raw/master/image-20210418203839596.png" srcset="/img/loading.gif" lazyload alt="image-20210418203839596" style="zoom:40%;" />
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/image-20210418203839596.png" srcset="/img/loading.gif" lazyload alt="image-20210418203839596" style="zoom:40%;" /></p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Array</span>.prototype.quickSort = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> rec = <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (arr.length === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> arr;<br>        <span class="hljs-keyword">const</span> left = [];<br>        <span class="hljs-keyword">const</span> right = [];<br>        <span class="hljs-keyword">const</span> mid = arr[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; arr.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (arr[i] &lt; mid) &#123;<br>                left.push(arr[i]);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                right.push(arr[i]);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> [...rec[left], mid, ...rec(right)];<br>    &#125;<br>    <span class="hljs-keyword">const</span> res = rec(<span class="hljs-built_in">this</span>);<br>    <span class="hljs-comment">// 将res拷贝到arr数组里</span><br>    res.forEach(n, i) =&gt; &#123;<br>        <span class="hljs-built_in">this</span>[i] = res;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>];<br>arr.quickSort()<br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>递归的时间复杂度是 O(logN)</p>
 <p>分区操作的时间复杂度是 O(n)</p>
@@ -421,7 +415,6 @@
 <li>遍历结束后，如果没有搜索到目标值，就返回-1</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">Arrary.prototype.sequentialSearch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.length; i++) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>[i] === item) &#123;<br>            <span class="hljs-keyword">return</span> i;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">const</span> res = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>].sequentialSearch(<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>遍历数组是一个循环操作</p>
 <p>时间复杂度：O(n)</p>
@@ -435,12 +428,11 @@
 <li>否则返回-1</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 默认arr已排序好</span><br>Arrary.prototype.binarySearch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> low = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> hight = <span class="hljs-built_in">this</span>.length - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span> (low &lt;= hight) &#123;<br>        <span class="hljs-keyword">const</span> mid = <span class="hljs-built_in">Math</span>.floor((low + hight) / <span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">const</span> element = <span class="hljs-built_in">this</span>[mid];<br>        <span class="hljs-keyword">if</span> (element &lt; item) &#123;<br>            low = mid + <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (element &gt; item) &#123;<br>            hight = mid - <span class="hljs-number">1</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> mid;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">const</span> res = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>].binarySearch(<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
-
 <blockquote>
 <p>每一次比较都使搜索范围缩小一般</p>
 <p>时间复杂度：O(logN)</p>
 </blockquote>
-<h3 id="4-LeetCode题"><a href="#4-LeetCode题" class="headerlink" title="4. LeetCode题"></a>4. LeetCode题</h3><h4 id="21-合并两个有序链表"><a href="#21-合并两个有序链表" class="headerlink" title="21. 合并两个有序链表"></a>21. 合并两个有序链表</h4><p><img src="C:/Users/19203/AppData/Roaming/Typora/typora-user-images/image-20211126231728097.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4-LeetCode题"><a href="#4-LeetCode题" class="headerlink" title="4. LeetCode题"></a>4. LeetCode题</h3><h4 id="21-合并两个有序链表"><a href="#21-合并两个有序链表" class="headerlink" title="21. 合并两个有序链表"></a>21. 合并两个有序链表</h4><p><img src="C:/Users/19203/AppData/Roaming/Typora/typora-user-images/image-20211126231728097.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>与归并排序中的合并有序数组很相似</li>
@@ -453,7 +445,6 @@
 <li>链表遍历结束，返回新链表</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> mergeTwoLists = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">list1, list2</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">new</span> ListNode();<br>    <span class="hljs-keyword">let</span> p = res;<br>    <span class="hljs-keyword">let</span> p1 = list1;<br>    <span class="hljs-keyword">let</span> p2 = list2;<br>    <span class="hljs-keyword">while</span> (p1 &amp;&amp; p2) &#123;<br>        <span class="hljs-keyword">if</span> (p1.val &lt; p2.val) &#123;<br>            p.next = p1;<br>            p1 = p1.next;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            p.next = p2;<br>            p2 = p2.next;<br>        &#125;<br>        p = p.next;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (p1) &#123;<br>        p.next = p1;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (p2) &#123;<br>        p.next = p2;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res.next;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
 <h4 id="374-猜数字大小"><a href="#374-猜数字大小" class="headerlink" title="374. 猜数字大小"></a>374. 猜数字大小</h4><p><img src="C:/Users/19203/AppData/Roaming/Typora/typora-user-images/image-20211126232711621.png" srcset="/img/loading.gif" lazyload alt="image-20211126232711621"></p>
 <p><strong>解题思路：</strong></p>
 <ul>
@@ -466,7 +457,6 @@
 <li>如果目标值大于或者小于中间元素，则在数组大于或小于中间元素的那一半中查找</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> guessNumber = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> low = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> high = n;<br>    <span class="hljs-keyword">while</span> (low &lt;= high) &#123;<br>        <span class="hljs-keyword">const</span> mid = <span class="hljs-built_in">Math</span>.floor((low + high) / <span class="hljs-number">2</span>);<br>        <span class="hljs-keyword">const</span> res = guess(mid);<br>        <span class="hljs-keyword">if</span> (res === <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> mid;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (res === <span class="hljs-number">1</span>) &#123;<br>            low = mid + <span class="hljs-number">1</span><br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            high = mid - <span class="hljs-number">1</span><br>        &#125;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
 
             </div>
             <hr>
@@ -737,13 +727,6 @@
 
 
 
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.10/dist/katex.min.css" />
-  
-
 
 
 
@@ -758,5 +741,21 @@
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

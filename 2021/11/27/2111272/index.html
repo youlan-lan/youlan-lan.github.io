@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -202,7 +202,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      533 字
+      530 字
     </span>
   
 
@@ -257,8 +257,9 @@
 <li>动态规划是算法设计中的一种方法</li>
 <li>将一个问题分解为相互重叠的子问题，通过反复求解子问题，来解决原来的问题，来解决原来的问题</li>
 </ul>
-<p><strong>斐波那契数列</strong><br>$$<br>F=\left{\begin{array}{c}0, \mathrm{n}=0 \ 1, \mathrm{n}=1 \ \text { Fibonacci }[n-1]+\text { Fibonacci }[n-2], n&gt;1\end{array}\right.<br>$$</p>
-<ul>
+<p><strong>斐波那契数列</strong></p>
+<script type="math/tex; mode=display">
+F=\left\{\begin{array}{c}0, \mathrm{n}=0 \\ 1, \mathrm{n}=1 \\ \text { Fibonacci }[n-1]+\text { Fibonacci }[n-2], n>1\end{array}\right.</script><ul>
 <li>定义子问题：$F(n)=F(n-1)+F(n-2)$</li>
 <li>反复执行：从2循环到n，执行上述公式</li>
 </ul>
@@ -267,7 +268,7 @@
 <p>相同点：都是将问题拆为多个小问题</p>
 <p>不同点：动态规划的小问题是相互有联系的，而分而治之是相互独立的</p>
 </blockquote>
-<h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70. 爬楼梯"></a>70. 爬楼梯</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127173017.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70. 爬楼梯"></a>70. 爬楼梯</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127173017.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>排到第n阶可以在第n-1阶爬1个台阶，或者在第n-2阶爬2个台阶</li>
@@ -280,17 +281,12 @@
 <li>反复执行：从2循环到n，执行上述公式</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> climbStairs = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">const</span> dp = [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;<br>        dp[i] = dp[i - <span class="hljs-number">1</span>] + dp[i - <span class="hljs-number">2</span>]<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[n]<br>&#125;;<br></code></pre></td></tr></table></figure>
-
 <p>优化：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> climbStairs = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> dp0 = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> dp1 = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;<br>        <span class="hljs-keyword">const</span> temp = dp0;<br>        dp0 = dp1;<br>        dp1 = dp1 + temp;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp1;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="198-打家劫舍"><a href="#198-打家劫舍" class="headerlink" title="198. 打家劫舍"></a>198. 打家劫舍</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127174914.png" srcset="/img/loading.gif" lazyload></p>
-<p><strong>解题思路：</strong><br>$$<br>\left{\begin{array}{ll}d p[0]=n u m s[0] &amp; \text { 只有一间房屋，则偷窃该房屋 } \ d p[1]=\max (\text { nums }[0], n u m s[1]) &amp; \text { 只有两间房屋，选择其中金额较高的房屋进行偷窃 }\end{array}\right.<br>$$</p>
-<ul>
+<h4 id="198-打家劫舍"><a href="#198-打家劫舍" class="headerlink" title="198. 打家劫舍"></a>198. 打家劫舍</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127174914.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>解题思路：</strong></p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{ll}d p[0]=n u m s[0] & \text { 只有一间房屋，则偷窃该房屋 } \\ d p[1]=\max (\text { nums }[0], n u m s[1]) & \text { 只有两间房屋，选择其中金额较高的房屋进行偷窃 }\end{array}\right.</script><ul>
 <li>f(k) = 从前k个房屋中能偷窃到的最大数额</li>
 <li>Ak = 第k个房屋的钱数</li>
 <li>$f(k) = max(f(k - 2) + Ak, f(k - 1))$</li>
@@ -302,7 +298,6 @@
 <li>反复执行：从2循环到n，执行上述公式</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> rob = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (!nums.length) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> dp0 = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">let</span> dp1 = nums[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= nums.length; i++) &#123;<br>        <span class="hljs-keyword">const</span> dp2 = <span class="hljs-built_in">Math</span>.max(dp0 + nums[i - <span class="hljs-number">1</span>], dp1);<br>        dp0 = dp1;<br>        dp1 = dp2;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp1<br>&#125;;<br></code></pre></td></tr></table></figure>
-
 
             </div>
             <hr>
@@ -571,13 +566,6 @@
 
 
 
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.10/dist/katex.min.css" />
-  
-
 
 
 
@@ -592,5 +580,21 @@
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

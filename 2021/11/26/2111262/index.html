@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -255,7 +255,7 @@
             <div class="markdown-body">
               <p>第一次学排序算法大概是今年的4月，距离今天是7个月左右，今天重新学了一遍，记得当时学得挺痛苦的（不知道是什么东西，为什么这么多种排序）。。。。</p>
 <blockquote>
-<p>具体可以看这一篇博客：<a target="_blank" rel="noopener" href="https://blog.youlan-lan.xyz/2021/06/06/2106061/">经典排序算法</a><br>目录如下：<br><img src="https://gitee.com/youlan_lan/md_image/raw/master/image-20210414224115837.png" srcset="/img/loading.gif" lazyload></p>
+<p>具体可以看这一篇博客：<a target="_blank" rel="noopener" href="https://blog.youlan-lan.xyz/2021/06/06/2106061/">经典排序算法</a><br>目录如下：<br><img src="https://gitee.com/youlan_lan/md_image/raw/master/image-20210414224115837.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </blockquote>
 <p>↑ 内容非常地多，覆盖面很全，今天只是粗略地学习了一些基础的部分</p>
 <h3 id="随便几点感想："><a href="#随便几点感想：" class="headerlink" title="随便几点感想："></a>随便几点感想：</h3><h5 id="1-有侧重点进行学习"><a href="#1-有侧重点进行学习" class="headerlink" title="1. 有侧重点进行学习"></a>1. 有侧重点进行学习</h5><p>知识点很多，有的知识点是重要的、需要熟练掌握，而有的知识点则是了解即可，以保证体系的完整和了解发展进程</p>
@@ -533,13 +533,6 @@
 
 
 
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.10/dist/katex.min.css" />
-  
-
 
 
 
@@ -554,5 +547,21 @@
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

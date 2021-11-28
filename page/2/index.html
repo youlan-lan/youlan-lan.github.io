@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -348,10 +348,10 @@
 基础语法推荐看文档学习，直接上来就看，直到看懵，懵了就可以开始找视频了；如果是一帆风顺到了end，emmm看样子基础还不错，如果把握不住主干还是找个视频看一看，过一遍主干。视频可以是简短精髓，这么短的视频还讲到的知识点：主干。
 新手学习文档的最大一个问题：抓不住主干
 
- 本文在不断地鼓励你行动，思考，跳出舒适圈
+本文在不断地鼓励你行动，思考，跳出舒适圈
 
 
-
+学
         </a>
       </p>
 
@@ -409,9 +409,9 @@
           
             
           
-          在MDN的文档中，对**callback()**的定义为：
+          在MDN的文档中，对callback()的定义为：
 被作为实参传入另一函数，并在该外部函数内被调用，用以来完成某些任务的函数，称为回调函数。
-A callback is a function that is passed as an argument to another function and is executed after its parent function has comp
+A callback is a function that is passed as an argument to another function and is executed after its parent function has complete
         </a>
       </p>
 
@@ -475,8 +475,7 @@ A callback is a function that is passed as an argument to another function and i
 我们都听过：“从前有座山，山里有座庙，庙里有个和尚，和尚在讲故事，讲的是，从前有座山，山里……”
 这个就是一种递归，先执行自己的部分，然后再调用自己，进行无限循环
 1. 定义在《学习 JavaScript 数据结构与算法（第三版）》书中，对递归的定义为：
-递归是一种解决问题的方法，它从解决问题的各个小部分开始，直到解决最初的大问题。递归通常涉及函数调用自身
-
+_递归是一种解决问题的方法，它从解决问题的各个小部分开始，直到解决最初的大问题。递归通常涉及函数调用自身
         </a>
       </p>
 
@@ -543,9 +542,11 @@ A callback is a function that is passed as an argument to another function and i
 面试要点解析
 
 
+
 知识点
 类型
 模块
+
 
 
 
@@ -560,7 +561,6 @@ css
 
 
 BFC
-c
         </a>
       </p>
 
@@ -787,10 +787,9 @@ es6中有集合Set
 1. 定义集合是由一组无序且唯一（即不能重复）的项组成的
 2. 具体操作创建
 12345class Set &#123;	constructor() &#123;		this.items = &#123;&#125;;  //使用对象来模拟	&#125;&#125;
-
 方法
 
-has(elemen
+has(element
         </a>
       </p>
 
@@ -1075,5 +1074,21 @@ JavaScript中没有链表
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

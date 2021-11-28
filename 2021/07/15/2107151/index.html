@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -202,7 +202,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      742 字
+      744 字
     </span>
   
 
@@ -259,20 +259,16 @@
 <p>我们都听过：“从前有座山，山里有座庙，庙里有个和尚，和尚在讲故事，讲的是，从前有座山，山里……”</p>
 <p>这个就是一种递归，先执行自己的部分，然后再调用自己，进行无限循环</p>
 <h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>在《学习 JavaScript 数据结构与算法（第三版）》书中，对递归的定义为：</p>
-<p><em>递归是一种解决问题的方法，它从解决问题的各个小部分开始，直到解决最初的大问题。递归通常涉及函数调用自身</em></p>
+<p>_递归是一种解决问题的方法，它从解决问题的各个小部分开始，直到解决最初的大问题。递归通常涉及函数调用自身_</p>
 <p><strong>形式一</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recursiveFunction</span>(<span class="hljs-params">someParam</span>) </span>&#123;<br>  recursiveFunction(someParam);<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p><strong>形式二</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recursiveFunction1</span>(<span class="hljs-params">someParam</span>) </span>&#123;<br>  recursiveFunction2(someParam);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recursiveFunction2</span>(<span class="hljs-params">someParam</span>) </span>&#123;<br>  recursiveFunction1(someParam);<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>上述两种形式的递归，都没有基线条件，及没有停止点，会一直递归下去，造成<strong>栈溢出</strong>的现象。故，一般在使用递归的时候，都会进行条件判断，满足条件之后就跳出递归，避免一直死循环下去。</p>
 <h3 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h3><h4 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h4><p><strong>迭代阶乘</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorialIterative</span>(<span class="hljs-params">number</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (number &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;<br>  <span class="hljs-keyword">let</span> total = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> n = number; n &gt; <span class="hljs-number">1</span>; n--) &#123;<br>    total = total * n;<br>  &#125;<br>  <span class="hljs-keyword">return</span> total;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p><strong>递归阶乘</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">factorial</span>(<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span> || n === <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> n * factorial(n - <span class="hljs-number">1</span>); <span class="hljs-comment">// 通过再次调用自身，进行计算</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>每当一个函数被一个算法调用时，该函数会进入调用栈的顶部</p>
 <p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210715105325.png" srcset="/img/loading.gif" lazyload alt="栈调用情况"></p>
 <p>如果没有添加用以停止函数递归的调用的基线条件，当出现栈溢出错误时，浏览器会抛出错误</p>
@@ -284,13 +280,10 @@
 </ul>
 <p><strong>迭代求斐波那契数</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibonacciIterative</span>(<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">let</span> fibNMinus2 = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">let</span> fibNMinus1 = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">let</span> fibN = n;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">2</span>; i &lt;= n; i++) &#123;<br>    fibN = fibNMinus1 + fibNMinus2;<br>    fibNMinus2 = fibNMinus1;<br>    fibNMinus1 = fibN;<br>  &#125;<br>  <span class="hljs-keyword">return</span> fibN;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p><strong>递归求斐波那契数</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibonacci</span>(<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">20</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">return</span> fibonacci(n - <span class="hljs-number">1</span>) + fibonacci(n - <span class="hljs-number">2</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p><strong>记忆化</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fibonacciMemoization</span>(<span class="hljs-params">n</span>) </span>&#123;<br>  <span class="hljs-keyword">const</span> memo = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]; <span class="hljs-comment">//第1,2个数已经写好了</span><br>  <span class="hljs-keyword">const</span> fibonacci = <span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (memo[n] != <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> memo[n]; <span class="hljs-comment">//如果是第1,2个数，直接返回本身</span><br>    <span class="hljs-keyword">return</span> (memo[n] = fibonacci(n - <span class="hljs-number">1</span>, memo) + fibonacci(n - <span class="hljs-number">2</span>, memo)); <span class="hljs-comment">//存缓存</span><br>  &#125;;<br>  <span class="hljs-keyword">return</span> fibonacci(n);<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h3 id="3-速度"><a href="#3-速度" class="headerlink" title="3. 速度"></a>3. 速度</h3><p>从测试上看，迭代的速度会比递归的快很多。</p>
 <p>使用递归的好处：</p>
 <ul>
@@ -565,13 +558,6 @@
 
 
 
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.10/dist/katex.min.css" />
-  
-
 
 
 
@@ -586,5 +572,21 @@
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

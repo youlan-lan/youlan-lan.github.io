@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -266,7 +266,7 @@
 <li>通常需要递归来模拟所有的路</li>
 </ul>
 </blockquote>
-<h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a>46. 全排列</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127213149.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a>46. 全排列</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127213149.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>要求：<ul>
@@ -283,7 +283,7 @@
 <li>遇到包含重复元素的情况，就回溯</li>
 <li>收集所有达到递归终点的情况，并返回</li>
 </ul>
-<h4 id="78-子集"><a href="#78-子集" class="headerlink" title="78. 子集"></a>78. 子集</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127214612.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="78-子集"><a href="#78-子集" class="headerlink" title="78. 子集"></a>78. 子集</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127214612.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>要求：<ul>
@@ -301,15 +301,13 @@
 <li>收集所有到达递归终点的情况，并返回</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> <span class="hljs-keyword">var</span> subsets = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> res = [];<br>    <span class="hljs-keyword">const</span> backtrack = <span class="hljs-function">(<span class="hljs-params">path, length, start</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (path.length === length) &#123;<br>            res.push(path);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start; i &lt; nums.length; i++) &#123;<br>            backtrack(path.concat(nums[i]), length, i + <span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= nums.length; i++) &#123;<br>        backtrack([], i, <span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>时间复杂度：$O(n*2^N)$</li>
 <li>空间复杂度：$O(N)$</li>
 </ul>
 <p>其他：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> subsets = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">nums</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> res = []<br>    <span class="hljs-keyword">let</span> path = []<br>    <span class="hljs-keyword">const</span> backtracking = <span class="hljs-function">(<span class="hljs-params">start</span>) =&gt;</span> &#123;<br>        <span class="hljs-comment">// 可以不需要加终止条件，因为start &gt;= nums.length，本层for循环本来也结束了</span><br>        res.push(path.slice())<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = start; i &lt; nums.length; i++) &#123;<br>            path.push(nums[i])<br>            backtracking(i + <span class="hljs-number">1</span>)<br>            path.pop() <span class="hljs-comment">//回溯</span><br>        &#125;<br>    &#125;<br>    backtracking(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> res<br>&#125;;<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127222538.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127222538.png" srcset="/img/loading.gif" lazyload alt=""></p>
 
             </div>
             <hr>
@@ -578,13 +576,6 @@
 
 
 
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.10/dist/katex.min.css" />
-  
-
 
 
 
@@ -599,5 +590,21 @@
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

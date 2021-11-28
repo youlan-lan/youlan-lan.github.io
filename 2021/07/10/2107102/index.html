@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -260,17 +260,14 @@
 <p><code>func-&gt;Function.prototype-&gt;Object.prototype-&gt;null</code></p>
 <p><code>arr-&gt;Array.prototype-&gt;Object.prototype-&gt;null</code></p>
 <h3 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h3><ol>
-<li>如果A沿着原型链能找到B.prototype，那么A instanceof B为true</li>
-</ol>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-keyword">instanceof</span> = <span class="hljs-function">(<span class="hljs-params">A, B</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">let</span> p = A;<br>    <span class="hljs-keyword">while</span>(p) &#123;<br>        <span class="hljs-keyword">if</span>(p === B.prototype)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        p = p.__proto__;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>如果在A对象上没有找到x属性，那么会沿着原型链找x属性</li>
+<li><p>如果A沿着原型链能找到B.prototype，那么A instanceof B为true</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-keyword">instanceof</span> = <span class="hljs-function">(<span class="hljs-params">A, B</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">let</span> p = A;<br>    <span class="hljs-keyword">while</span>(p) &#123;<br>        <span class="hljs-keyword">if</span>(p === B.prototype)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        p = p.__proto__;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>如果在A对象上没有找到x属性，那么会沿着原型链找x属性</p>
+</li>
 </ol>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> obj = &#123;&#125;;<br><span class="hljs-built_in">Object</span>.prototype.x = <span class="hljs-string">&#x27;x&#x27;</span>;<br><span class="hljs-keyword">const</span> func = <span class="hljs-function">() =&gt;</span> &#123;&#125;;<br><span class="hljs-built_in">Function</span>.prototype.y = <span class="hljs-string">&#x27;y&#x27;</span>;<br><span class="hljs-built_in">console</span>.log(func.x);  <span class="hljs-comment">//x</span><br><span class="hljs-built_in">console</span>.log(func.y);  <span class="hljs-comment">//y</span><br><span class="hljs-built_in">console</span>.log(obj.x);   <span class="hljs-comment">//x</span><br><span class="hljs-built_in">console</span>.log(obj.y);   <span class="hljs-comment">//undefined</span><br></code></pre></td></tr></table></figure>
-
 <h2 id="2-获取JSON的节点值"><a href="#2-获取JSON的节点值" class="headerlink" title="2. 获取JSON的节点值"></a>2. 获取JSON的节点值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> json = &#123;<br>    <span class="hljs-attr">a</span>: &#123; <span class="hljs-attr">b</span>: &#123; <span class="hljs-attr">c</span>: <span class="hljs-number">1</span> &#125; &#125;,<br>    <span class="hljs-attr">d</span>: &#123; <span class="hljs-attr">e</span>: &#123; <span class="hljs-attr">f</span>: &#123; <span class="hljs-attr">h</span>: <span class="hljs-number">2</span> &#125;, <span class="hljs-attr">g</span>: &#123; <span class="hljs-attr">i</span>: <span class="hljs-number">3</span> &#125; &#125; &#125;<br>&#125;<br><br><span class="hljs-comment">// 遍历json对象的路径</span><br><span class="hljs-keyword">const</span> path1 = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>];<br><span class="hljs-keyword">const</span> path2 = [<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;f&#x27;</span>, <span class="hljs-string">&#x27;h&#x27;</span>];<br><span class="hljs-keyword">const</span> path3 = [<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;g&#x27;</span>, <span class="hljs-string">&#x27;i&#x27;</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getPoint</span>(<span class="hljs-params">path</span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> p = json;<br>    path.forEach(<span class="hljs-function"><span class="hljs-params">k</span> =&gt;</span> &#123;<br>        p = p[k];<br>    &#125;);<br>    <span class="hljs-built_in">console</span>.log(p);<br>&#125;<br><br>getPoint(path1); <span class="hljs-comment">// 1</span><br>getPoint(path2); <span class="hljs-comment">// 2</span><br>getPoint(path3); <span class="hljs-comment">// 3</span><br></code></pre></td></tr></table></figure>
-
 
             </div>
             <hr>
@@ -541,13 +538,6 @@
 
 
 
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.10/dist/katex.min.css" />
-  
-
 
 
 
@@ -562,5 +552,21 @@
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

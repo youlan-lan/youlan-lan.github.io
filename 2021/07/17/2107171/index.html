@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -253,7 +253,7 @@
             <h1 style="display: none">浅谈 JavaScript_callback() 回调函数</h1>
             
             <div class="markdown-body">
-              <p>在<strong>MDN</strong>的文档中，对**callback()**的定义为：</p>
+              <p>在<strong>MDN</strong>的文档中，对<strong>callback()</strong>的定义为：</p>
 <p><em>被作为实参传入另一函数，并在该外部函数内被调用，用以来完成某些任务的函数，称为回调函数。</em></p>
 <p><em>A callback is a function that is passed as an argument to another function and is executed after its parent function has completed.</em></p>
 <h3 id="1-理解回调函数"><a href="#1-理解回调函数" class="headerlink" title="1. 理解回调函数"></a>1. 理解回调函数</h3><p><strong>调用过程</strong>：函数a的参数为函数b，当函数a执行完之后再去执行b</p>
@@ -267,7 +267,6 @@
 <p>Q：为什么不直接把整个事情在函数a中写好，而是要通过一个参数进行回调呢？</p>
 <p>A：如果你直接写进去，<code>function a()&#123;...;b();&#125;</code>，那就直接写死了，失去了变量的灵活性。当你要传入别的函数时，需要重新写一遍函数a。</p>
 <h3 id="2-代码展示"><a href="#2-代码展示" class="headerlink" title="2. 代码展示"></a>2. 代码展示</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params">callback</span>) </span>&#123;      <br>   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;parent函数a！&quot;</span>);   <br>   <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;调用回调函数&quot;</span>);   <br>   callback(); <span class="hljs-comment">// 调用回调函数</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">b</span>(<span class="hljs-params"></span>)</span>&#123; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;回调函数b&quot;</span>); &#125;   <br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">c</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;回调函数c&quot;</span>); &#125;   <br>  <br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>)</span>&#123; a(b); a(c); &#125;<br><br>test();<br></code></pre></td></tr></table></figure>
-
 <h3 id="3-为什么需要回调"><a href="#3-为什么需要回调" class="headerlink" title="3. 为什么需要回调"></a>3. 为什么需要回调</h3><p>JavaScript 在浏览器中运行，浏览器的主进程是<strong>单线程事件循环</strong>。如果我们尝试在单线程事件循环中，<u>执行长时间运行</u>的操作，则会阻止该过程。</p>
 <p>JavaScript 是按从上到下的顺序运行代码。在有些情况下，<strong>必须在某些情况发生之后</strong>，代码才能运行，这就不是按顺序运行了。这是异步编程。</p>
 <p>回调函数确保：函数在某个任务完成之前不运行，在任务完成之后立即运行。它帮助我们编写异步 JavaScript 代码，避免问题和错误。</p>
@@ -275,7 +274,6 @@
 <h3 id="4-Javascript-回调地狱"><a href="#4-Javascript-回调地狱" class="headerlink" title="4.  Javascript 回调地狱"></a>4.  Javascript 回调地狱</h3><p>当多个异步函数一个接一个地执行时，会产生<strong>回调地狱</strong>。它也被称为<strong>厄运金字塔</strong>。</p>
 <p>代码变得更加难以理解，以及难以维护和修改。这是由回调函数的嵌套而引发的。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> p_client = <span class="hljs-keyword">new</span> Db(<span class="hljs-string">&#x27;integration_tests_20&#x27;</span>, <span class="hljs-keyword">new</span> Server(<span class="hljs-string">&quot;127.0.0.1&quot;</span>, <span class="hljs-number">27017</span>, &#123;&#125;), &#123;<span class="hljs-string">&#x27;pk&#x27;</span>:CustomPKFactory&#125;);<br>   p_client.open(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, p_client</span>) </span>&#123;<br>       p_client.dropDatabase(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, done</span>) </span>&#123;<br>           p_client.createCollection(<span class="hljs-string">&#x27;test_custom_key&#x27;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, collection</span>) </span>&#123;<br>               collection.insert(&#123;<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-number">1</span>&#125;, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, docs</span>) </span>&#123;<br>                   collection.find(&#123;<span class="hljs-string">&#x27;_id&#x27;</span>:<span class="hljs-keyword">new</span> ObjectID(<span class="hljs-string">&quot;aaaaaaaaaaaa&quot;</span>)&#125;, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, cursor</span>) </span>&#123;<br>                       cursor.toArray(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, items</span>) </span>&#123;<br>                           test.assertEquals(<span class="hljs-number">1</span>, items.length);<br> <br>                           <span class="hljs-comment">// Let&#x27;s close the db</span><br>                           p_client.close();<br>                       &#125;);<br>                   &#125;);<br>               &#125;);<br>           &#125;);<br>       &#125;);<br>   &#125;);<br><br></code></pre></td></tr></table></figure>
-
 <p> ↑ 就如上面的代码</p>
 <h3 id="5-如何避免回调地狱？"><a href="#5-如何避免回调地狱？" class="headerlink" title="5. 如何避免回调地狱？"></a>5. 如何避免回调地狱？</h3><ol>
 <li>使用promise</li>
@@ -569,13 +567,6 @@
 
 
 
-  
-
-  
-    <!-- KaTeX -->
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.10/dist/katex.min.css" />
-  
-
 
 
 
@@ -590,5 +581,21 @@
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

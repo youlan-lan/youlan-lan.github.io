@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
 
 
 
@@ -328,9 +328,9 @@ JS异步中的任务队列
             
               <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
             
-              <a href="/tags/%E9%98%9F%E5%88%97/">队列</a>
-            
               <a href="/tags/LeetCode/">LeetCode</a>
+            
+              <a href="/tags/%E9%98%9F%E5%88%97/">队列</a>
             
           </div>
         
@@ -405,9 +405,9 @@ JavaScript中没有栈，但可以用Array实现栈的所有功能
             
               <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
             
-              <a href="/tags/LeetCode/">LeetCode</a>
-            
               <a href="/tags/%E6%A0%88/">栈</a>
+            
+              <a href="/tags/LeetCode/">LeetCode</a>
             
           </div>
         
@@ -440,12 +440,11 @@ JavaScript中没有栈，但可以用Array实现栈的所有功能
           
           基础储备1. 数据类型与数据结构
 
-
 关于null和undefined：
 有一个小故事：
 1995年JavaScript诞生时，最初像Java一样，只设置了null作为表示”无”的值。根据C语言的传统，null被设计成可以自动转为0。但是，JavaScript的设计者，觉得这样做还不够，主要有以下两个原因：
 
-null像在Java里一样，被当成一个对象。但是，JavaScript的数据类型分成原始
+null像在Java里一样，被当成一个对象。但是，JavaScript的数据类型分成原始类
         </a>
       </p>
 
@@ -584,8 +583,7 @@ hexo主题网站： https://hexo.io/themes/
 这里有几百个主题供你选择，由于太多而且网站中也没有对这些主题进行筛选的功能，让人难以选择，所以我们推荐到github上寻找合适的主题：
 
 
-
-从而可以看出，最
+从而可以看出，最受
         </a>
       </p>
 
@@ -610,9 +608,9 @@ hexo主题网站： https://hexo.io/themes/
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-            
               <a href="/tags/%E5%B0%8F%E7%99%BD%E6%95%99%E7%A8%8B/">小白教程</a>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
             
           </div>
         
@@ -674,9 +672,9 @@ hexo主题网站： https://hexo.io/themes/
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-            
               <a href="/tags/%E5%B0%8F%E7%99%BD%E6%95%99%E7%A8%8B/">小白教程</a>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
             
               <a href="/tags/node/">node</a>
             
@@ -856,5 +854,21 @@ hexo主题网站： https://hexo.io/themes/
 <script  src="/js/boot.js" ></script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
