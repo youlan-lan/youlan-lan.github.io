@@ -4,33 +4,6 @@
   
   
   <entry>
-    <title>Fluid 主题之数学公式</title>
-    <link href="/2021/11/28/2111281/"/>
-    <url>/2021/11/28/2111281/</url>
-    
-    <content type="html"><![CDATA[<h1 id="Fluid-主题之数学公式"><a href="#Fluid-主题之数学公式" class="headerlink" title="Fluid 主题之数学公式"></a>Fluid 主题之数学公式</h1><p>在用markdown写技术文档时，总难免要写到数学公式。而常用的Markdown编辑器都会集成Mathjax，用来渲染文档中的类Latex格式书写的数学公式。但是基于Hexo搭建的个人博客，默认情况下渲染数学公式却会出现各种各样的问题。</p><h3 id="一、原因"><a href="#一、原因" class="headerlink" title="一、原因"></a>一、原因</h3><p>Hexo 默认使用 hexo-renderer-marked 引擎渲染网页，该引擎会把一些特殊的 markdown 符号转换为相应的 html 标签，比如在 markdown 语法中，下划线<code>_</code>代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签。</p><p>因为类 Latex 格式书写的数学公式下划线<code>_</code>表示下标，有特殊的含义，如果被强制转换为<code>&lt;em&gt;</code>标签，那么 MathJax 引擎在渲染数学公式的时候就会出错。</p><p>类似的语义冲突的符号还包括<code>*</code>, <code>&#123;</code>, <code>&#125;</code>, <code>\\</code>等。</p><h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p><strong>1. 卸载默认引擎，并安装新的渲染引擎</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">npm</span> <span class="hljs-string">uninstall</span> <span class="hljs-string">hexo-renderer-marked</span> <span class="hljs-string">--save</span> <br><span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">hexo-renderer-kramed</span> <span class="hljs-string">--save</span><br></code></pre></td></tr></table></figure><p><strong>2. 修改<code>/node_modules/hexo-renderer-kramed/lib/renderer.js</code></strong></p><p>注释formatText函数中的全部逻辑，直接将text返回</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">formatText</span>(<span class="hljs-params">text</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> text;<br>&#125;<br></code></pre></td></tr></table></figure><p><strong>3. 修改hexo的渲染源码<code>/node_modules/kramed/lib/rules/inline.js</code></strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 第11行修改为：</span><br><span class="hljs-attr">escape</span>: <span class="hljs-regexp">/^\\([`*&#123;&#125;\[\]()# +\-.!_&gt;])/</span>,<br><span class="hljs-comment">// 第20行修改为：</span><br>em: <span class="hljs-regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,<br></code></pre></td></tr></table></figure><p><strong>4. 停止使用 <code>hexo-math</code>，安装 <code>hexo-renderer-mathjax</code></strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">npm</span> <span class="hljs-string">uninstall</span> <span class="hljs-string">hexo-math</span> <span class="hljs-string">--save</span><br><span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">hexo-renderer-mathjax</span> <span class="hljs-string">--save</span><br></code></pre></td></tr></table></figure><p><strong>5. 更新 <code>Mathjax</code> 的 <code>CDN</code> 链接，打开<code>/node_modules/hexo-renderer-mathjax/mathjax.html</code>，在最后一行添加js：</strong></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">// <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure><p><strong>6. 修改主题配置，打开<code>/source/_data/fluid_config.yml</code> 文件</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">post:</span><br>  <span class="hljs-attr">math:</span>  <br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>  <br>    <span class="hljs-attr">specific:</span> <span class="hljs-literal">false</span>   <br>    <span class="hljs-attr">engine:</span> <span class="hljs-string">mathjax</span>   <span class="hljs-comment"># 支持 mathjax 或 katex</span><br></code></pre></td></tr></table></figure><p><strong>7. 在根目录下修改<code>_config.yml</code>，添加</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mathjax:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure><p><strong>8. 在想要使用公式渲染的文章<code>Front-matter</code>中打开<code>MathJax</code></strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mathjax:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure><h3 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h3><p>参考于：</p><ul><li>官方文档：<a href="https://hexo.fluid-dev.com/docs/guide/#latex-%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F">https://hexo.fluid-dev.com/docs/guide/#latex-%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F</a></li><li>博文分享：<a href="https://pxxyyz.com/posts/32990/#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F">https://pxxyyz.com/posts/32990/#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F</a></li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>博客搭建</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>博客搭建</tag>
-      
-      <tag>小白教程</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>经典排序算法</title>
     <link href="/2021/11/28/2106061/"/>
     <url>/2021/11/28/2106061/</url>
@@ -58,6 +31,33 @@
   
   
   <entry>
+    <title>Fluid 主题之数学公式</title>
+    <link href="/2021/11/28/2111281/"/>
+    <url>/2021/11/28/2111281/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Fluid-主题之数学公式"><a href="#Fluid-主题之数学公式" class="headerlink" title="Fluid 主题之数学公式"></a>Fluid 主题之数学公式</h1><p>在用markdown写技术文档时，总难免要写到数学公式。而常用的Markdown编辑器都会集成Mathjax，用来渲染文档中的类Latex格式书写的数学公式。但是基于Hexo搭建的个人博客，默认情况下渲染数学公式却会出现各种各样的问题。</p><h3 id="一、原因"><a href="#一、原因" class="headerlink" title="一、原因"></a>一、原因</h3><p>Hexo 默认使用 hexo-renderer-marked 引擎渲染网页，该引擎会把一些特殊的 markdown 符号转换为相应的 html 标签，比如在 markdown 语法中，下划线<code>_</code>代表斜体，会被渲染引擎处理为<code>&lt;em&gt;</code>标签。</p><p>因为类 Latex 格式书写的数学公式下划线<code>_</code>表示下标，有特殊的含义，如果被强制转换为<code>&lt;em&gt;</code>标签，那么 MathJax 引擎在渲染数学公式的时候就会出错。</p><p>类似的语义冲突的符号还包括<code>*</code>, <code>&#123;</code>, <code>&#125;</code>, <code>\\</code>等。</p><h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p><strong>1. 卸载默认引擎，并安装新的渲染引擎</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">npm</span> <span class="hljs-string">uninstall</span> <span class="hljs-string">hexo-renderer-marked</span> <span class="hljs-string">--save</span> <br><span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">hexo-renderer-kramed</span> <span class="hljs-string">--save</span><br></code></pre></td></tr></table></figure><p><strong>2. 修改<code>/node_modules/hexo-renderer-kramed/lib/renderer.js</code></strong></p><p>注释formatText函数中的全部逻辑，直接将text返回</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">formatText</span>(<span class="hljs-params">text</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> text;<br>&#125;<br></code></pre></td></tr></table></figure><p><strong>3. 修改hexo的渲染源码<code>/node_modules/kramed/lib/rules/inline.js</code></strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 第11行修改为：</span><br><span class="hljs-attr">escape</span>: <span class="hljs-regexp">/^\\([`*&#123;&#125;\[\]()# +\-.!_&gt;])/</span>,<br><span class="hljs-comment">// 第20行修改为：</span><br>em: <span class="hljs-regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,<br></code></pre></td></tr></table></figure><p><strong>4. 停止使用 <code>hexo-math</code>，安装 <code>hexo-renderer-mathjax</code></strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">npm</span> <span class="hljs-string">uninstall</span> <span class="hljs-string">hexo-math</span> <span class="hljs-string">--save</span><br><span class="hljs-string">npm</span> <span class="hljs-string">install</span> <span class="hljs-string">hexo-renderer-mathjax</span> <span class="hljs-string">--save</span><br></code></pre></td></tr></table></figure><p><strong>5. 更新 <code>Mathjax</code> 的 <code>CDN</code> 链接，打开<code>/node_modules/hexo-renderer-mathjax/mathjax.html</code>，在最后一行添加js：</strong></p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">// <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure><p><strong>6. 修改主题配置，打开<code>/source/_data/fluid_config.yml</code> 文件</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">post:</span><br>  <span class="hljs-attr">math:</span>  <br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span>  <br>    <span class="hljs-attr">specific:</span> <span class="hljs-literal">false</span>   <br>    <span class="hljs-attr">engine:</span> <span class="hljs-string">mathjax</span>   <span class="hljs-comment"># 支持 mathjax 或 katex</span><br></code></pre></td></tr></table></figure><p><strong>7. 在根目录下修改<code>_config.yml</code>，添加</strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mathjax:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure><p><strong>8. 在想要使用公式渲染的文章<code>Front-matter</code>中打开<code>MathJax</code></strong></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mathjax:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure><h3 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h3><p>参考于：</p><ul><li>官方文档：<a href="https://hexo.fluid-dev.com/docs/guide/#latex-%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F">https://hexo.fluid-dev.com/docs/guide/#latex-%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F</a></li><li>博文分享：<a href="https://pxxyyz.com/posts/32990/#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F">https://pxxyyz.com/posts/32990/#%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F</a></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>博客搭建</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>博客搭建</tag>
+      
+      <tag>小白教程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>学习数据结构与算法的心得总结</title>
     <link href="/2021/11/28/2111275/"/>
     <url>/2021/11/28/2111275/</url>
@@ -74,9 +74,9 @@
     
     <tags>
       
-      <tag>数据结构</tag>
-      
       <tag>算法</tag>
+      
+      <tag>数据结构</tag>
       
       <tag>think</tag>
       
@@ -105,9 +105,9 @@
       
       <tag>js</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>算法</tag>
+      
+      <tag>LeetCode</tag>
       
       <tag>回溯算法</tag>
       
@@ -136,9 +136,9 @@
       
       <tag>js</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>算法</tag>
+      
+      <tag>LeetCode</tag>
       
       <tag>贪心算法</tag>
       
@@ -167,9 +167,9 @@
       
       <tag>js</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>算法</tag>
+      
+      <tag>LeetCode</tag>
       
       <tag>动态规划</tag>
       
@@ -198,9 +198,9 @@
       
       <tag>js</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>算法</tag>
+      
+      <tag>LeetCode</tag>
       
       <tag>分而治之</tag>
       
@@ -254,9 +254,9 @@
       
       <tag>js</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>算法</tag>
+      
+      <tag>LeetCode</tag>
       
       <tag>排序算法</tag>
       
@@ -488,9 +488,9 @@
     
     <tags>
       
-      <tag>面试</tag>
-      
       <tag>算法</tag>
+      
+      <tag>面试</tag>
       
       <tag>css</tag>
       
@@ -698,9 +698,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>队列</tag>
+      
+      <tag>LeetCode</tag>
       
     </tags>
     
@@ -729,9 +729,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>栈</tag>
-      
       <tag>LeetCode</tag>
+      
+      <tag>栈</tag>
       
     </tags>
     
