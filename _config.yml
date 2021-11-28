@@ -103,7 +103,7 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/youlan-lan/youlan-lan.github.io.git
+  repo: git@github.com:youlan-lan/youlan-lan.github.io.git
   branch: master
 
 # #二次元
