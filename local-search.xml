@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>前端开发调试</title>
+    <link href="/2022/01/20/2201201/"/>
+    <url>/2022/01/20/2201201/</url>
+    
+    <content type="html"><![CDATA[<h1 id="前端开发调试"><a href="#前端开发调试" class="headerlink" title="前端开发调试"></a>前端开发调试</h1><blockquote><p><strong>前言：</strong></p><p>“调试工具是提高效率重要的利器，继续往前端的方向走的话，工欲善其事必先利其器，可以先学如何去调试定位问题和排查性能问题”</p><p>上个月在参加前端训练营，导师和我说了上面一段话，调试非常重要，自己开发的时候也只是会console.log……emmm</p><p>新的一场前端训练营又开始了，课程中安排了《前端必须知道的开发调试知识》，借此系统学习一遍开发调试并<u>简单</u>记录笔记😆</p></blockquote><h2 id="1-前端Debug的特点"><a href="#1-前端Debug的特点" class="headerlink" title="1. 前端Debug的特点"></a>1. 前端Debug的特点</h2><ul><li>多平台：浏览器、Hybrid、NodeJs、小程序、桌面应用……</li><li>多环境：本地开发环境、线上环境</li><li>多工具：Chrome DevTools、Charles、Spy-Debugger、Whistle、VConsole……</li><li>多技巧：Console、BreakPoint、sourceMap、代理……</li></ul><h2 id="2-Chrome-DevTools"><a href="#2-Chrome-DevTools" class="headerlink" title="2. Chrome DevTools"></a>2. Chrome DevTools</h2><h3 id="2-1-Elements-Tab"><a href="#2-1-Elements-Tab" class="headerlink" title="2-1 Elements Tab"></a>2-1 Elements Tab</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220119224314.png" alt=""></p><ul><li>.cls  动态修改元素的class，输入字符串动态增加类名</li><li>勾选/取消类名</li><li>点击具体的样式值，进行编辑，实时预览</li><li>Computed下点击样式里的剪男头可以跳转到styles面板中的css规则</li><li>强制激活伪类<ul><li>选中具有伪类的元素，点击 :hov</li><li>DOM树右键菜单，选择 Force State</li></ul></li></ul><h3 id="2-2-Console-Tab"><a href="#2-2-Console-Tab" class="headerlink" title="2-2. Console Tab"></a>2-2. Console Tab</h3><ul><li>console.log</li><li>console.warn</li><li>console.error</li><li>console.debug</li><li>console.table：具象化的展示JSON和数组数据</li><li>console.dir：主要用于查看dom元素</li><li>占位符：给日志添加样式，可以突出重要的信息 <ul><li>%s：字符串占位符</li><li>%o：对象占位符</li><li>%c：样式占位符</li><li>%d：数字占位符</li></ul></li></ul><h3 id="2-3-Sources-Tab"><a href="#2-3-Sources-Tab" class="headerlink" title="2-3. Sources Tab"></a>2-3. Sources Tab</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220119231328.png" alt=""></p><p><strong>调试行为：</strong></p><ul><li>Continue / pause 继续/暂停</li><li>Step  Over 单步执行时，遇到子函数时不会进行子函数内执行，而是执行完整个子函数</li><li>Step Into 单步执行时，遇到子函数会进入内部并且继续单步执行</li><li>Step Out 单步执行进入子函数内部时， 可以执行完子函数余下部分，并且返回上一层函数调用处</li><li>Restart 重新执行</li><li>Stop 关闭</li></ul><p>压缩后的代码难以调试，使用webpack打包生成 Source Map</p><ul><li>用于映射源码</li><li>mappings 字段存储了源文件和 Source Map的映射<ul><li>英文，表示源码及压缩代码的位置关联</li><li>逗号，分割一行代码中的内容</li><li>分好，代表换行</li></ul></li></ul><h3 id="2-4-Performance-Tab"><a href="#2-4-Performance-Tab" class="headerlink" title="2-4. Performance Tab"></a>2-4. Performance Tab</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220119233902.png" alt=""></p><h3 id="2-5-Network-Tab"><a href="#2-5-Network-Tab" class="headerlink" title="2-5. Network Tab"></a>2-5. Network Tab</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220119234918.png" alt=""></p><ul><li>模拟网速限制</li><li>选择查看对应请求</li></ul><h3 id="2-6-Application-Tab"><a href="#2-6-Application-Tab" class="headerlink" title="2-6. Application Tab"></a>2-6. Application Tab</h3><p>展示与本地存储相关的信息</p><ul><li>Local Storage</li><li>Session Storage</li><li>IndexedDB</li><li>Web SQL</li><li>Cookies</li></ul><h2 id="3-移动端-H5-调试"><a href="#3-移动端-H5-调试" class="headerlink" title="3. 移动端 H5 调试"></a>3. 移动端 H5 调试</h2><p>真机调试 | 代理调试 | 常用工具</p><h3 id="3-1-真机调试"><a href="#3-1-真机调试" class="headerlink" title="3-1 真机调试"></a>3-1 真机调试</h3><p><strong>IOS：</strong></p><ol><li>使用 lightning 数据线将 iPhone 与 Mac 相连</li><li>iPhone 开启 Web 检查器（设置 -&gt; Safari -&gt; 高级 -&gt; 开启 Web 检查器）</li><li>iPhone 使用 Safari 浏览器打开要调试的页面</li><li>Mac 打开 Safari 浏览器调试（菜单栏 -&gt; 开发 -&gt; iPhone 设备名 -&gt; 选择调试页面）</li><li>在弹出的 Safari Developer Tools 中调试</li></ol><blockquote><p>没有 iPhone 设备可以在 Mac APP Store 安装 Xcode 使用其内置的 IOS模拟器</p></blockquote><p><strong>Android：</strong></p><ol><li>使用 USB数据线将手机与电脑相连</li><li>手机进入开发者模式，勾选 USB调试，并允许调试</li><li><p>电脑打开 Chrome 浏览器，在地址栏输入：Chrome://inspect/#devices 并勾选 Discover USB devices 选项</p></li><li><p>手机允许远程调试，并访问调试页面</p></li><li>电脑点击 inspect 按钮</li><li>进入调试界面</li></ol><blockquote><p>使用手机扫码，处于同一个网络下即可</p></blockquote><h3 id="3-2-使用代理工具调试"><a href="#3-2-使用代理工具调试" class="headerlink" title="3-2 使用代理工具调试"></a>3-2 使用代理工具调试</h3><p>原理：</p><ul><li>电脑作为代理服务器</li><li>手机通过HTTP代理连接到电脑</li><li>手机上的请求都经过代理服务器</li></ul><p>常用工具</p><ul><li>Charles：适合查看、控制网路请求，分析数据</li><li>Fiddler：与Charles类似，适合windows平台</li><li>spy-debugger：远程调试手机页面，抓包</li><li>Whistle：基于Node实现的跨平台Web调试代理工具</li></ul><h2 id="4-常用开发调试技巧"><a href="#4-常用开发调试技巧" class="headerlink" title="4. 常用开发调试技巧"></a>4. 常用开发调试技巧</h2><h3 id="4-1-线上即时修改-Override"><a href="#4-1-线上即时修改-Override" class="headerlink" title="4-1 线上即时修改 Override"></a>4-1 线上即时修改 Override</h3><p>通过控制台调试修改了样式，使用此功能记录修改的样式，保存</p><ol><li>打开 Sources 面板下的 Overrides</li><li>点击 Select folders for Overrides，选择一个本地的空文件夹目录</li><li>允许授权</li><li>在page中修改代码，修改完成后command + s 保存</li><li>打开 DevTools，点击右上角的三个小点 -&gt; More tools -&gt; Changes，就能看到所有修改了</li></ol><h3 id="4-2-利用代理解决开发阶段的跨域问题"><a href="#4-2-利用代理解决开发阶段的跨域问题" class="headerlink" title="4-2 利用代理解决开发阶段的跨域问题"></a>4-2 利用代理解决开发阶段的跨域问题</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220120001353.png" alt=""></p><h3 id="4-3-启用本地-source-map"><a href="#4-3-启用本地-source-map" class="headerlink" title="4-3 启用本地 source map"></a>4-3 启用本地 source map</h3><p>线上不存在 Source Map 时可以使用 Map Local 网络映射功能来访问本地的 Source Map文件</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工程化开发</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+      <tag>调试</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>一年很快，成长 | 前端小白入门之行</title>
     <link href="/2021/12/30/2112301/"/>
     <url>/2021/12/30/2112301/</url>
@@ -13,14 +40,14 @@
     
     <categories>
       
-      <category>项目搭建</category>
+      <category>随便写写</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>项目搭建</tag>
+      <tag>总结</tag>
       
     </tags>
     
@@ -38,14 +65,14 @@
     
     <categories>
       
-      <category>随便写写</category>
+      <category>项目搭建</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>总结</tag>
+      <tag>项目搭建</tag>
       
     </tags>
     
@@ -684,9 +711,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>链表</tag>
-      
       <tag>LeetCode</tag>
+      
+      <tag>链表</tag>
       
     </tags>
     
@@ -715,9 +742,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>链表</tag>
-      
       <tag>LeetCode</tag>
+      
+      <tag>链表</tag>
       
       <tag>面试</tag>
       
@@ -779,9 +806,9 @@
       
       <tag>数据结构</tag>
       
-      <tag>LeetCode</tag>
-      
       <tag>栈</tag>
+      
+      <tag>LeetCode</tag>
       
     </tags>
     

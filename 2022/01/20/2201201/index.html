@@ -1,0 +1,688 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&quot;auto&quot;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/youlan_lan/md_image/raw/master/20210606182149.png">
+  <link rel="icon" href="https://gitee.com/youlan_lan/md_image/raw/master/20210606182149.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#447EA5">
+  <meta name="description" content="">
+  <meta name="author" content="优岚">
+  <meta name="keywords" content="">
+  
+  <title>前端开发调试 - 优岚的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Youlan's Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端开发调试">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      优岚
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-20 00:33" pubdate>
+        2022年1月20日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端开发调试</h1>
+            
+            <div class="markdown-body">
+              <h1 id="前端开发调试"><a href="#前端开发调试" class="headerlink" title="前端开发调试"></a>前端开发调试</h1><blockquote>
+<p><strong>前言：</strong></p>
+<p>“调试工具是提高效率重要的利器，继续往前端的方向走的话，工欲善其事必先利其器，可以先学如何去调试定位问题和排查性能问题”</p>
+<p>上个月在参加前端训练营，导师和我说了上面一段话，调试非常重要，自己开发的时候也只是会console.log……emmm</p>
+<p>新的一场前端训练营又开始了，课程中安排了《前端必须知道的开发调试知识》，借此系统学习一遍开发调试并<u>简单</u>记录笔记😆</p>
+</blockquote>
+<h2 id="1-前端Debug的特点"><a href="#1-前端Debug的特点" class="headerlink" title="1. 前端Debug的特点"></a>1. 前端Debug的特点</h2><ul>
+<li>多平台：浏览器、Hybrid、NodeJs、小程序、桌面应用……</li>
+<li>多环境：本地开发环境、线上环境</li>
+<li>多工具：Chrome DevTools、Charles、Spy-Debugger、Whistle、VConsole……</li>
+<li>多技巧：Console、BreakPoint、sourceMap、代理……</li>
+</ul>
+<h2 id="2-Chrome-DevTools"><a href="#2-Chrome-DevTools" class="headerlink" title="2. Chrome DevTools"></a>2. Chrome DevTools</h2><h3 id="2-1-Elements-Tab"><a href="#2-1-Elements-Tab" class="headerlink" title="2-1 Elements Tab"></a>2-1 Elements Tab</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220119224314.png" alt=""></p>
+<ul>
+<li>.cls  动态修改元素的class，输入字符串动态增加类名</li>
+<li>勾选/取消类名</li>
+<li>点击具体的样式值，进行编辑，实时预览</li>
+<li>Computed下点击样式里的剪男头可以跳转到styles面板中的css规则</li>
+<li>强制激活伪类<ul>
+<li>选中具有伪类的元素，点击 :hov</li>
+<li>DOM树右键菜单，选择 Force State</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-Console-Tab"><a href="#2-2-Console-Tab" class="headerlink" title="2-2. Console Tab"></a>2-2. Console Tab</h3><ul>
+<li>console.log</li>
+<li>console.warn</li>
+<li>console.error</li>
+<li>console.debug</li>
+<li>console.table：具象化的展示JSON和数组数据</li>
+<li>console.dir：主要用于查看dom元素</li>
+<li>占位符：给日志添加样式，可以突出重要的信息 <ul>
+<li>%s：字符串占位符</li>
+<li>%o：对象占位符</li>
+<li>%c：样式占位符</li>
+<li>%d：数字占位符</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-Sources-Tab"><a href="#2-3-Sources-Tab" class="headerlink" title="2-3. Sources Tab"></a>2-3. Sources Tab</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220119231328.png" alt=""></p>
+<p><strong>调试行为：</strong></p>
+<ul>
+<li>Continue / pause 继续/暂停</li>
+<li>Step  Over 单步执行时，遇到子函数时不会进行子函数内执行，而是执行完整个子函数</li>
+<li>Step Into 单步执行时，遇到子函数会进入内部并且继续单步执行</li>
+<li>Step Out 单步执行进入子函数内部时， 可以执行完子函数余下部分，并且返回上一层函数调用处</li>
+<li>Restart 重新执行</li>
+<li>Stop 关闭</li>
+</ul>
+<p>压缩后的代码难以调试，使用webpack打包生成 Source Map</p>
+<ul>
+<li>用于映射源码</li>
+<li>mappings 字段存储了源文件和 Source Map的映射<ul>
+<li>英文，表示源码及压缩代码的位置关联</li>
+<li>逗号，分割一行代码中的内容</li>
+<li>分好，代表换行</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-Performance-Tab"><a href="#2-4-Performance-Tab" class="headerlink" title="2-4. Performance Tab"></a>2-4. Performance Tab</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220119233902.png" alt=""></p>
+<h3 id="2-5-Network-Tab"><a href="#2-5-Network-Tab" class="headerlink" title="2-5. Network Tab"></a>2-5. Network Tab</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220119234918.png" alt=""></p>
+<ul>
+<li>模拟网速限制</li>
+<li>选择查看对应请求</li>
+</ul>
+<h3 id="2-6-Application-Tab"><a href="#2-6-Application-Tab" class="headerlink" title="2-6. Application Tab"></a>2-6. Application Tab</h3><p>展示与本地存储相关的信息</p>
+<ul>
+<li>Local Storage</li>
+<li>Session Storage</li>
+<li>IndexedDB</li>
+<li>Web SQL</li>
+<li>Cookies</li>
+</ul>
+<h2 id="3-移动端-H5-调试"><a href="#3-移动端-H5-调试" class="headerlink" title="3. 移动端 H5 调试"></a>3. 移动端 H5 调试</h2><p>真机调试 | 代理调试 | 常用工具</p>
+<h3 id="3-1-真机调试"><a href="#3-1-真机调试" class="headerlink" title="3-1 真机调试"></a>3-1 真机调试</h3><p><strong>IOS：</strong></p>
+<ol>
+<li>使用 lightning 数据线将 iPhone 与 Mac 相连</li>
+<li>iPhone 开启 Web 检查器（设置 -&gt; Safari -&gt; 高级 -&gt; 开启 Web 检查器）</li>
+<li>iPhone 使用 Safari 浏览器打开要调试的页面</li>
+<li>Mac 打开 Safari 浏览器调试（菜单栏 -&gt; 开发 -&gt; iPhone 设备名 -&gt; 选择调试页面）</li>
+<li>在弹出的 Safari Developer Tools 中调试</li>
+</ol>
+<blockquote>
+<p>没有 iPhone 设备可以在 Mac APP Store 安装 Xcode 使用其内置的 IOS模拟器</p>
+</blockquote>
+<p><strong>Android：</strong></p>
+<ol>
+<li>使用 USB数据线将手机与电脑相连</li>
+<li>手机进入开发者模式，勾选 USB调试，并允许调试</li>
+<li><p>电脑打开 Chrome 浏览器，在地址栏输入：Chrome://inspect/#devices 并勾选 Discover USB devices 选项</p>
+</li>
+<li><p>手机允许远程调试，并访问调试页面</p>
+</li>
+<li>电脑点击 inspect 按钮</li>
+<li>进入调试界面</li>
+</ol>
+<blockquote>
+<p>使用手机扫码，处于同一个网络下即可</p>
+</blockquote>
+<h3 id="3-2-使用代理工具调试"><a href="#3-2-使用代理工具调试" class="headerlink" title="3-2 使用代理工具调试"></a>3-2 使用代理工具调试</h3><p>原理：</p>
+<ul>
+<li>电脑作为代理服务器</li>
+<li>手机通过HTTP代理连接到电脑</li>
+<li>手机上的请求都经过代理服务器</li>
+</ul>
+<p>常用工具</p>
+<ul>
+<li>Charles：适合查看、控制网路请求，分析数据</li>
+<li>Fiddler：与Charles类似，适合windows平台</li>
+<li>spy-debugger：远程调试手机页面，抓包</li>
+<li>Whistle：基于Node实现的跨平台Web调试代理工具</li>
+</ul>
+<h2 id="4-常用开发调试技巧"><a href="#4-常用开发调试技巧" class="headerlink" title="4. 常用开发调试技巧"></a>4. 常用开发调试技巧</h2><h3 id="4-1-线上即时修改-Override"><a href="#4-1-线上即时修改-Override" class="headerlink" title="4-1 线上即时修改 Override"></a>4-1 线上即时修改 Override</h3><p>通过控制台调试修改了样式，使用此功能记录修改的样式，保存</p>
+<ol>
+<li>打开 Sources 面板下的 Overrides</li>
+<li>点击 Select folders for Overrides，选择一个本地的空文件夹目录</li>
+<li>允许授权</li>
+<li>在page中修改代码，修改完成后command + s 保存</li>
+<li>打开 DevTools，点击右上角的三个小点 -&gt; More tools -&gt; Changes，就能看到所有修改了</li>
+</ol>
+<h3 id="4-2-利用代理解决开发阶段的跨域问题"><a href="#4-2-利用代理解决开发阶段的跨域问题" class="headerlink" title="4-2 利用代理解决开发阶段的跨域问题"></a>4-2 利用代理解决开发阶段的跨域问题</h3><p><img src="https://cdn.jsdelivr.net/gh/youlan-lan/md_image/img/20220120001353.png" alt=""></p>
+<h3 id="4-3-启用本地-source-map"><a href="#4-3-启用本地-source-map" class="headerlink" title="4-3 启用本地 source map"></a>4-3 启用本地 source map</h3><p>线上不存在 Source Map 时可以使用 Map Local 网络映射功能来访问本地的 Source Map文件</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%BC%80%E5%8F%91/">工程化开发</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B0%83%E8%AF%95/">调试</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/30/2112301/">
+                        <span class="hidden-mobile">一年很快，成长 | 前端小白入门之行</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                <!-- <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'youlan-lan.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript> -->
+
+
+<script src="https://utteranc.es/client.js"
+        repo="youlan-lan/youlan-lan.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+<noscript>Please enable JavaScript to view the comments</noscript>
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <div style="color:#0983CE"> 优岚的博客 | 记录过程</div> <div style="background-image: linear-gradient(to right, red, orange, yellow, green, yellow, orange, red, orange, yellow, green, yellow, orange, red);-webkit-background-clip: text;animation: move 5s infinite;color: transparent;"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        粤ICP备2021167798号
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2021167798"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/police_beian.png" alt="police-icon"/>
+            
+            <span>粤ICP备2021167798号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

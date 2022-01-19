@@ -56,7 +56,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -257,10 +257,10 @@
 <blockquote>
 <p>根据项目的实际情况进行配置</p>
 </blockquote>
-<h2 id="1-Vite-项目初始化配置"><a href="#1-Vite-项目初始化配置" class="headerlink" title="1. Vite 项目初始化配置"></a>1. Vite 项目初始化配置</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209140618.png" srcset="/img/loading.gif" lazyload alt="两者速度比较"></p>
+<h2 id="1-Vite-项目初始化配置"><a href="#1-Vite-项目初始化配置" class="headerlink" title="1. Vite 项目初始化配置"></a>1. Vite 项目初始化配置</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209140618.png" alt="两者速度比较"></p>
 <p>对比 Vue-cli(基于 Webpack)，Vite 非常非常快❤！</p>
-<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209140654.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209155204.png" srcset="/img/loading.gif" lazyload alt="开箱即用"></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209140654.png" alt=""></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209155204.png" alt="开箱即用"></p>
 <p>vite 官方中文文档：<a href="https://link.juejin.cn/?target=https%3A%2F%2Fcn.vitejs.dev%2Fguide%2F">cn.vitejs.dev/guide/</a></p>
 <blockquote>
 <p>个人喜欢用yarn，命令简单统一</p>
@@ -268,13 +268,13 @@
 <ul>
 <li><p>安装 vite</p>
   <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">yarn create vite<br></code></pre></td></tr></table></figure>
-<p>  <img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209141502.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>  <img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209141502.png" alt=""></p>
 <p>  按照提示输入就ok了</p>
 </li>
 <li><p>浏览器打开查看效果：<a href="https://link.juejin.cn?target=http%3A%2F%2Flocalhost%3A3000%2F">http://localhost:3000/</a></p>
 </li>
 </ul>
-<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209141916.png" srcset="/img/loading.gif" lazyload alt="项目初始化"></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211209141916.png" alt="项目初始化"></p>
 <h3 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a>配置别名</h3><p>修改 vite.config.ts 配置文件</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">import</span> &#123; defineConfig &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vite&quot;</span>;<br><span class="hljs-keyword">import</span> vue <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@vitejs/plugin-vue&quot;</span>;<br><span class="hljs-keyword">import</span> path <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;path&quot;</span>;<br><span class="hljs-keyword">const</span> resolve = <span class="hljs-function">(<span class="hljs-params">dir: <span class="hljs-built_in">string</span></span>) =&gt;</span> path.join(__dirname, dir);<br><br><span class="hljs-comment">// https://vitejs.dev/config/</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> defineConfig(&#123;<br>  <span class="hljs-attr">plugins</span>: [vue()],<br>  <span class="hljs-attr">resolve</span>: &#123;<br>    <span class="hljs-attr">alias</span>: &#123;<br>      <span class="hljs-string">&quot;@/&quot;</span>: resolve(<span class="hljs-string">&quot;src/*&quot;</span>),<br>      <span class="hljs-attr">comps</span>: resolve(<span class="hljs-string">&quot;src/components&quot;</span>),<br>      <span class="hljs-attr">store</span>: resolve(<span class="hljs-string">&quot;src/store&quot;</span>),<br>    &#125;,<br>  &#125;,<br>&#125;);<br><br></code></pre></td></tr></table></figure>
 <ul>
@@ -305,8 +305,8 @@
 <blockquote>
 <p>存在上述情况使用vuex会更为合适</p>
 </blockquote>
-<p><img src="https://next.vuex.vuejs.org/flow.png" srcset="/img/loading.gif" lazyload alt="“单向数据流”理念的简单示意"></p>
-<p><img src="https://next.vuex.vuejs.org/vuex.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://next.vuex.vuejs.org/flow.png" alt="“单向数据流”理念的简单示意"></p>
+<p><img src="https://next.vuex.vuejs.org/vuex.png" alt=""></p>
 <p>Vuex 官方文档：<a target="_blank" rel="noopener" href="https://next.vuex.vuejs.org/zh/index.html">next.vuex.vuejs.org/</a></p>
 <ul>
 <li><p>安装Vuex，使用4.x版本</p>
@@ -439,7 +439,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99/">随便写写</a>
+                      <a class="hover-with-bg" href="/categories/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">项目搭建</a>
                     
                   </div>
                 
@@ -447,7 +447,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+                      <a class="hover-with-bg" href="/tags/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">项目搭建</a>
                     
                   </div>
                 
@@ -487,7 +487,7 @@
 
             
               <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
+              <article class="comments" id="comments">
                 
                   
                 
@@ -631,7 +631,7 @@
           >
             
               <span style="visibility: hidden; width: 0">|</span>
-              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+              <img src="/img/police_beian.png" alt="police-icon"/>
             
             <span>粤ICP备2021167798号</span>
           </a>
@@ -666,10 +666,6 @@
 
 <!-- Plugins -->
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 

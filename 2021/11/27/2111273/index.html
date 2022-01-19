@@ -56,7 +56,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -258,7 +258,7 @@
 <li>全盘通过每个阶段的<strong>局部最优</strong>选择，从而达到全局的最优</li>
 <li>结果<strong>并不一定是最优</strong></li>
 </ul>
-<h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="455-分发饼干"><a href="#455-分发饼干" class="headerlink" title="455. 分发饼干"></a>455. 分发饼干</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127205608.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="455-分发饼干"><a href="#455-分发饼干" class="headerlink" title="455. 分发饼干"></a>455. 分发饼干</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127205608.png" alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>局部最优：既能满足孩子，还消耗最少</li>
@@ -271,7 +271,7 @@
 <li>然后继续遍历饼干数组，找到满足第二、三、……、n个孩子的饼干</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> findContentChildren = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">g, s</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> sortFunc = <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">return</span> a - b;<br>    &#125;<br>    g.sort(sortFunc);<br>    s.sort(sortFunc);<br>    <span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;<br>    s.forEach(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (n &gt;= g[i]) &#123;<br>            i++<br>        &#125;<br>    &#125;)<br>    <span class="hljs-keyword">return</span> i;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h4 id="122-买卖股票的最佳时机（二）"><a href="#122-买卖股票的最佳时机（二）" class="headerlink" title="122. 买卖股票的最佳时机（二）"></a>122. 买卖股票的最佳时机（二）</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127211510.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="122-买卖股票的最佳时机（二）"><a href="#122-买卖股票的最佳时机（二）" class="headerlink" title="122. 买卖股票的最佳时机（二）"></a>122. 买卖股票的最佳时机（二）</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127211510.png" alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>前提：上帝视角，知道未来的价格</li>
@@ -347,7 +347,7 @@
 
             
               <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
+              <article class="comments" id="comments">
                 
                   
                 
@@ -491,7 +491,7 @@
           >
             
               <span style="visibility: hidden; width: 0">|</span>
-              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+              <img src="/img/police_beian.png" alt="police-icon"/>
             
             <span>粤ICP备2021167798号</span>
           </a>
@@ -526,10 +526,6 @@
 
 <!-- Plugins -->
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 

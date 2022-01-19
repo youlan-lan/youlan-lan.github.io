@@ -56,7 +56,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -260,7 +260,7 @@
 <p>应用：</p>
 <p>关系型数据库：创建新的表时，同时创建一个索引来更快地查询到记录的key</p>
 </blockquote>
-<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712113143.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712113143.png" alt=""></p>
 <h3 id="2-具体操作"><a href="#2-具体操作" class="headerlink" title="2. 具体操作"></a>2. 具体操作</h3><p><strong>创建</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HaspTable</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">toStrFn = defaultToString</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.toStrFn = toStrFn;<br>        <span class="hljs-built_in">this</span>.table = &#123;&#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>创建散列函数</strong></p>
@@ -288,7 +288,7 @@
 <p><strong>处理冲突的几种方法： 分离链接、线性探查和双散列法</strong></p>
 <h4 id="1-分离链接"><a href="#1-分离链接" class="headerlink" title="1. 分离链接"></a>1. 分离链接</h4><p>解决冲突的最简单的方法</p>
 <p>分离链接法包括为散列表的每一个位置创建一个链表并将元素存储在里面</p>
-<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712142136.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712142136.png" alt=""></p>
 <p><strong>创建</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HashTableSeparateChaining</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">toStrFn = defaultString</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.toStrFn = toStrFn;<span class="hljs-number">2</span><br>        <span class="hljs-built_in">this</span>.table = &#123;&#125;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>方法</strong></p>
@@ -311,13 +311,13 @@
 <blockquote>
 <p>会降低散列表的效率，因为搜索键值会随时间变慢</p>
 </blockquote>
-<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712152055.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712152055.png" alt=""></p>
 </li>
 <li><p>检验是否有必要将一个或多个元素移动到之前的位置。当搜索一个键的时候，这种方法可以避免找到一个空位置</p>
 <blockquote>
 <p>需要移动元素，挪动键值对</p>
 </blockquote>
-<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712152417.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20210712152417.png" alt=""></p>
 </li>
 </ol>
 <p><strong>方法</strong></p>
@@ -406,7 +406,7 @@
 
             
               <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
+              <article class="comments" id="comments">
                 
                   
                 
@@ -550,7 +550,7 @@
           >
             
               <span style="visibility: hidden; width: 0">|</span>
-              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+              <img src="/img/police_beian.png" alt="police-icon"/>
             
             <span>粤ICP备2021167798号</span>
           </a>
@@ -585,10 +585,6 @@
 
 <!-- Plugins -->
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 

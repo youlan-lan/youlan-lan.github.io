@@ -56,7 +56,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -269,7 +269,7 @@
 <li>解：递归地对两个子数组进行快速排序</li>
 <li>合：对子数组进行合并</li>
 </ul>
-<h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="374-猜数字大小"><a href="#374-猜数字大小" class="headerlink" title="374. 猜数字大小"></a>374. 猜数字大小</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127141945.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="2-LeetCode题"><a href="#2-LeetCode题" class="headerlink" title="2. LeetCode题"></a>2. LeetCode题</h3><h4 id="374-猜数字大小"><a href="#374-猜数字大小" class="headerlink" title="374. 猜数字大小"></a>374. 猜数字大小</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127141945.png" alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>二分搜索，同样具备“分、解、合”的特性</li>
@@ -282,7 +282,7 @@
 <li>合：不需要刺不，因为在子数组中搜到就返回了</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> guessNumber = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>&#123;<br>    <span class="hljs-keyword">const</span> rec = <span class="hljs-function">(<span class="hljs-params">low, high</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (low &gt; high) <span class="hljs-keyword">return</span><br>        <span class="hljs-keyword">const</span> mid = <span class="hljs-built_in">Math</span>.floor((low + high) / <span class="hljs-number">2</span>)<br>        <span class="hljs-keyword">const</span> res = guess(mid)<br>        <span class="hljs-keyword">if</span> (res === <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> mid<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (res === <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> rec(mid + <span class="hljs-number">1</span>, high)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">return</span> rec(<span class="hljs-number">1</span>, mid - <span class="hljs-number">1</span>)<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> rec(<span class="hljs-number">1</span>, n)<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h4 id="226-翻转二叉树"><a href="#226-翻转二叉树" class="headerlink" title="226. 翻转二叉树"></a>226. 翻转二叉树</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127142610.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="226-翻转二叉树"><a href="#226-翻转二叉树" class="headerlink" title="226. 翻转二叉树"></a>226. 翻转二叉树</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127142610.png" alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>先翻转左右子树，再将子树换个位置</li>
@@ -296,7 +296,7 @@
 <li>合：将翻转后的左右子树换个位置放到根节点上</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> invertTree = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">root</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">return</span> &#123;<br>        <span class="hljs-attr">val</span>: root.val,<br>        <span class="hljs-attr">left</span>: invertTree(root.right),<br>        <span class="hljs-attr">right</span>: invertTree(root.left)<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h4 id="100-相同的树"><a href="#100-相同的树" class="headerlink" title="100. 相同的树"></a>100. 相同的树</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127143208.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="100-相同的树"><a href="#100-相同的树" class="headerlink" title="100. 相同的树"></a>100. 相同的树</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127143208.png" alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>两个树：根节点的值相同，左子树相同，右子树相同</li>
@@ -310,7 +310,7 @@
 <li>合：将上述结果合并，如果根节点的值也相同，则树相同</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> isSameTree = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">p, q</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (!p &amp;&amp; !q) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">if</span> (p &amp;&amp; q &amp;&amp; p.val === q.val &amp;&amp;<br>        isSameTree(p.left, q.left) &amp;&amp;<br>        isSameTree(p.right , q.right)<br>    ) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>&#125;;<br></code></pre></td></tr></table></figure>
-<h4 id="101-对称二叉树"><a href="#101-对称二叉树" class="headerlink" title="101. 对称二叉树"></a>101. 对称二叉树</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127150441.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="101-对称二叉树"><a href="#101-对称二叉树" class="headerlink" title="101. 对称二叉树"></a>101. 对称二叉树</h4><p><img src="https://gitee.com/youlan_lan/md_image/raw/master/20211127150441.png" alt=""></p>
 <p><strong>解题思路：</strong></p>
 <ul>
 <li>转化为：左右子树是否镜像</li>
@@ -387,7 +387,7 @@
 
             
               <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
+              <article class="comments" id="comments">
                 
                   
                 
@@ -531,7 +531,7 @@
           >
             
               <span style="visibility: hidden; width: 0">|</span>
-              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+              <img src="/img/police_beian.png" alt="police-icon"/>
             
             <span>粤ICP备2021167798号</span>
           </a>
@@ -566,10 +566,6 @@
 
 <!-- Plugins -->
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 
